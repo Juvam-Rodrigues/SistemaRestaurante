@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\SessaoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SessoesController;
 
 
 /*
@@ -14,6 +14,9 @@ use App\Http\Controllers\SessoesController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [SessaoController::class, 'new']);
+Route::get('/deslogar', [SessaoController::class, 'back']);
+Route::post('/logar', [SessaoController::class, 'create']);
 
-Route::get('/', [SessoesController::class, 'new']);
+
 
