@@ -10,4 +10,8 @@ class Comanda extends Model
     use HasFactory;
     protected $fillable = ['nome', 'status', 'valor'];
 
+    //Relacionamento um para muitos com mesa
+    public function mesa(){
+        return $this->belongsTo(Mesa::class);
+    }
 }

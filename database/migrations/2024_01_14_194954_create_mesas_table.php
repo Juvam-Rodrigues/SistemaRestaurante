@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer("numero");
             $table->timestamps();
             $table->foreIgnId('comandas_id') -> constrained();
+            $table->foreIgnId('usuarios_id') -> constrained();
 
         });
     }
