@@ -7,24 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{ asset('css/stylelogin.css') }}">
     <title>Login</title>
 </head>
 
 <body>
     <header>
-        <img src="" alt="">
+        <img src="img/LOGO.png" alt="Logo do Restaurante Dos Irmãos" width="120px" height="120px" id="logo">
         <a href="/" class="conteudoHeader">Login</a>
         <a href="/registro" class="conteudoHeader">Registrar</a>
     </header>
-    
-        <form action="/logar" method="POST" id="formlogin">
-            {{ csrf_field() }}
 
-            <h1>Login</h1>
-            <input type="email" name="email" id="email" placeholder="Digite seu email" required>
-            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
-            <button type="submit" id="enviar">Entrar</button>
-        </form>
+    <div id="container">
+        <div id="imagem-login">
+            <img src="img/login-de-usuario.png" alt="login-de-usuario.png" width="180px" height="180px">
+        </div>
+        <div>
+            <form action="/logar" method="POST" id="formlogin">
+                {{ csrf_field() }}
+
+                <h1>Login</h1>
+                <input type="email" name="email" id="email" placeholder="Digite seu email" required>
+                <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+                <button type="submit" id="enviar">Entrar</button>
+            </form>
+        </div>
     </div>
 
 </body>

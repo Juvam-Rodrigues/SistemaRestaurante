@@ -1,0 +1,31 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Elementos do header*/
+
+header{
+    text-align: center;
+}
+
+/* Elementos do container*/
+#container{
+    margin-top: 2%;
+    justify-content: center;
+    display: flex;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#imagem-login{
+    justify-content: center;
+    margin-right: 5%;
+    border-right: 1.5px solid black;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
