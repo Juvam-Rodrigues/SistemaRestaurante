@@ -13,7 +13,10 @@
 
 <body>
     <header>
-        <img src="img/LOGO.png" alt="Logo do Restaurante Dos Irmãos" width="120px" height="120px" id="logo">
+        <div id="divLogo">
+            <img src="img/LOGO.png" alt="Logo do Restaurante Dos Irmãos" width="90px" height="90px" id="logo">
+            <p>Restaurante Dos Irmãos</p>
+        </div>
         <a href="/" class="conteudoHeader">Login</a>
         <a href="/registro" class="conteudoHeader">Registrar</a>
     </header>

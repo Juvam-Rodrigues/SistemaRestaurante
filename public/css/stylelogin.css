@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "fonteLogo";
+    src: url("../fontes/xilosa_.ttf");
+}
+
 * {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -7,12 +12,46 @@
 
 /* Elementos do header*/
 
-header{
-    text-align: center;
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 1%;
+    padding-top: 1%;
+
+}
+
+#divLogo {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+
+#divLogo>p {
+    margin-left: 2%;
+    margin-right: 1%;
+    font-family: 'fonteLogo', Arial, Helvetica, sans-serif, monospace;
+    font-size: 1.5vw;
+}
+
+.conteudoHeader {
+    padding: 1%;
+    font-family: 'fonteLogo', Arial, Helvetica, sans-serif, monospace;
+    font-size: 1.5vw;
+    margin-left: 10%;
+    border: 1px solid black;
+    text-decoration: none;
+    align-items: center;
+    border-radius: 5px;
+
 }
 
 /* Elementos do container*/
-#container{
+#container {
     margin-top: 2%;
     justify-content: center;
     display: flex;
@@ -21,7 +60,8 @@ header{
     margin-left: 10%;
     margin-right: 10%;
 }
-#imagem-login{
+
+#imagem-login {
     justify-content: center;
     margin-right: 5%;
     border-right: 1.5px solid black;
