@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 200);
-            $table->boolean('status');
-            $table->string('valor', 100);
+            $table->string('email', 200);
+            $table->string('senha', 200);
             $table->timestamps();
         });
     }

@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('comandas', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 200);
-            $table->string('email', 150);
-            $table->string('senha', 100);
+            $table->boolean('status');
+            $table->string('valor', 10000);
+            $table->foreIgnId('mesas_id') -> constrained();
+
             $table->timestamps();
         });
     }

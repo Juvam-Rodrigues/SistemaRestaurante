@@ -19,6 +19,7 @@ class SessaoController extends Controller
 
         if($comparacao==true){
             return redirect("/sistema");
+
         }else{
             return redirect("/")->with('mensagem', 'Insira os dados corretamente ou crie uma conta.');;
         }

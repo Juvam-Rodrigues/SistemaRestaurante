@@ -18,7 +18,6 @@
             <p>Restaurante Dos Irmãos</p>
         </div>
         <a href="/" class="conteudoHeader">Login</a>
-        <a href="/registro" class="conteudoHeader">Registrar</a>
     </header>
 
     <div id="container">
@@ -37,6 +36,12 @@
         </div>
     </div>
 
+    <footer>
+        <div class="creditos">
+            <p>Todos direitos reservado a <br> 
+            <strong>Juvam Rodrigues do Nascimento Neto</strong></p>
+        </div>
+    </footer>
 </body>
 
 </html>
