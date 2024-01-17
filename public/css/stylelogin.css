@@ -55,7 +55,7 @@ header {
 
 /* Elementos do container*/
 #container {
-    margin-top: 2%;
+    margin-top: 5%;
     justify-content: center;
     display: flex;
     border: 1.5px solid black;
@@ -64,19 +64,54 @@ header {
     margin-right: 10%;
 }
 
-#imagem-login {
+#divImagem-login {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    margin-right: 5%;
     border-right: 1.5px solid black;
     padding-right: 10%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+
+}
+
+/* Elementos do form*/
+#divForm{
+    margin-left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#formlogin {
+    padding: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* Garante que os itens se empilhem verticalmente */
+    border-radius: 12px;
+}
+#formlogin > h1{
+    margin-bottom: 12px;
+    font-size: 50px;
+    font-family: "fonteLogo", Arial, Helvetica, sans-serif;
+}
+
+#email,
+#senha{
+    margin-bottom: 12px;
+    width: 30vw;
+    height: 4vh;
+}
+#enviar{
+    margin-top: 5px;
+    width: 100px;
+    height: 4vh;
 }
 
 /* Elementos do footer*/
 footer{
     background-color: rgb(233, 233, 233);
     padding: 2%;
-    margin-top: 8%;
+    margin-top: 5%;
     border-top: 1.5px solid black ;
 }

@@ -22,10 +22,10 @@
     </header>
 
     <div id="container">
-        <div id="imagem-login">
-            <img src="img/login-de-usuario.png" alt="login-de-usuario.png" width="180px" height="180px">
+        <div id="divImagem-login">
+            <img src="img/LoginNordestino.png" alt="login-de-usuario.png" width="200px" height="200x">
         </div>
-        <div>
+        <div id="divForm">
             <form action="/logar" method="POST" id="formlogin">
                 {{ csrf_field() }}
 
@@ -40,7 +40,7 @@
     <footer>
         <div class="creditos">
             <p>Todos direitos reservado a <br> 
-            <strong>Juvam Rodrigues do Nascimento Neto</strong></p>
+            <strong>Juvam Rodrigues do Nascimento Neto.</strong></p>
         </div>
     </footer>
 </body>
