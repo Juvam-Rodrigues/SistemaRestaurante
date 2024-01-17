@@ -27,11 +27,9 @@ header {
     background-color: white;
     display: flex;
     align-items: center;
-    margin-left: 10%;
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
-
 }
 
 #divLogo>p {

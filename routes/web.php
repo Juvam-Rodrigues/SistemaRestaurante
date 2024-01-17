@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SessaoController;
+use App\Http\Controllers\SistemaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SessaoController::class, 'new']);
 Route::get('/deslogar', [SessaoController::class, 'back']);
 Route::post('/logar', [SessaoController::class, 'create']);
+
+Route::get('/sistema', [SistemaController::class, 'exibir']);
+
 
 
 
