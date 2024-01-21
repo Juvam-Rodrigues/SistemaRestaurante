@@ -34,14 +34,14 @@
     <div id="container">
 
         <div id="divContainerMesas">
-
             <div class="divSuperior">
                 <div class="divTextoMesasComandas">
                     <p class="textoMesasComandas">Mesas</p>
                 </div>
 
                 <div class="divBotaoModal"><!-- Button trigger modal -->
-                    <button class="btn btn-success botaoModal" data-bs-toggle="modal" data-bs-target="#modalAdicionarMesa">
+                    <button class="btn btn-success botaoModal" data-bs-toggle="modal"
+                        data-bs-target="#modalAdicionarMesa">
                         Adicionar nova mesa
                     </button>
                 </div>
@@ -88,23 +88,48 @@
             </div>
         </div>
 
-
-
-        <div class="divSuperior">
-            <div class="divTextoMesasComandas">
-                <p class="textoMesasComandas">Comandas</p>
+        <div class="containerComandas">
+            <div class="divSuperior">
+                <div class="divTextoMesasComandas">
+                    <p class="textoMesasComandas">Comandas</p>
+                </div>
+                <div class="divBotaoModal"><!-- Button trigger modal -->
+                    <button class="btn btn-success botaoModal" data-bs-toggle="modal"
+                        data-bs-target="#modalAdicionarComanda">
+                        Adicionar nova comanda
+                    </button>
+                </div>
             </div>
-            <div class="divBotaoModal"><!-- Button trigger modal -->
-                <button class="btn btn-success botaoModal" data-bs-toggle="modal" data-bs-target="#modalAdicionarComanda">
-                    Adicionar nova comanda
-                </button>
+
+            <!-- Modal de adicionar comandas -->
+            <div class="modal fade" id="modalAdicionarComanda" tabindex="-1" aria-labelledby="modalAdicionarComandaLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar comanda</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <form action="/comandas/adicionar" method="post">
+                            {{ csrf_field() }}
+                            <div class="modal-body">
+                                <label for="mumero_mesa">Insira o número da nova mesa:</label>
+                                <input type="text" class="form-control" id="numero" name="numero">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="divInferior">
+                    <!-- varrer as comadas-->
+                </div>
             </div>
 
         </div>
-        <div class="divInferior">
-            <!-- varrer as comadas-->
-        </div>
-    </div>
 
 
 
@@ -112,17 +137,17 @@
 
 
 
-    <footer>
-        <div class="creditos">
-            <p>Todos direitos reservado a <br>
-                <strong>Juvam Rodrigues do Nascimento Neto.</strong>
-            </p>
-        </div>
-    </footer>
+        <footer>
+            <div class="creditos">
+                <p>Todos direitos reservado a <br>
+                    <strong>Juvam Rodrigues do Nascimento Neto.</strong>
+                </p>
+            </div>
+        </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
 
 </body>
 
