@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nome', 200);
             $table->boolean('status');
             $table->string('valor', 10000);
-            $table->foreIgnId('mesas_id') -> constrained();
+            $table->foreIgnId('mesa_id') -> constrained();
 
             $table->timestamps();
         });

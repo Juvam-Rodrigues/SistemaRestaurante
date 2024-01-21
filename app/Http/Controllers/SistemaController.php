@@ -7,5 +7,5 @@ use Illuminate\Http\Request;
 class SistemaController extends Controller
 {
     public function exibir(){
-        return view("sistema/sistema");
+        return view("sistema/index");
     }}

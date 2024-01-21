@@ -26,12 +26,12 @@ header {
 #divLogo {
     background-color: white;
     display: flex;
-    justify-content: center;
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
 }
+
 
 #divLogo>p {
     margin-left: 2%;
@@ -53,70 +53,50 @@ header {
     color: black;
 
 }
-
-/* Elementos do container*/
-#container {
-    margin-top: 5%;
-    justify-content: center;
-    display: flex;
-    border: 1.5px solid black;
-    border-radius: 5px;
+.submenu-trigger {
+    position: relative;
+    display: inline-block;
     margin-left: 10%;
-    margin-right: 10%;
+    margin-right: 3%;
+}
+.submenu-trigger:hover{
+    cursor: pointer;
 }
 
-#divImagem-login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-right: 1.5px solid black;
-    padding-right: 10%;
-
-}
-
-/* Elementos do form*/
-#divForm{
-    margin-left: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#formlogin {
-    padding: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    /* Garante que os itens se empilhem verticalmente */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 108%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid black;
     border-radius: 12px;
 }
-#formlogin > h1{
-    margin-bottom: 12px;
-    font-size: 50px;
-    font-family: "fonteLogo", Arial, Helvetica, sans-serif;
+
+.submenu a {
+    display: block;
+    font-family: fonteTitulo;
+    padding: 10px;
+    text-decoration: none;
+    color: #ff0000;
 }
 
-#email,
-#senha{
-    margin-bottom: 12px;
-    width: 30vw;
-    height: 4vh;
+.submenu a:hover {
+    border-radius: 12px;
+    background-color: #f0f0f0;
 }
-#enviar{
-    margin-top: 5px;
-    width: 10vw;
-    height: 4vh;
-    background-color: white;
-    border: 1px solid black;
+
+/*Elementos do container*/
+#container{
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 1.5px solid black;
     border-radius: 5px;
-
 }
-#enviar:hover{
-    background-color: rgb(3, 182, 3);
-    color: white;
 
-}
+
 
 /* Elementos do footer*/
 footer{
