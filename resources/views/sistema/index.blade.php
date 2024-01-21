@@ -36,21 +36,24 @@
         <div id="divContainerMesas">
 
             <div class="divSuperior">
-                <p class="textoMesasComandas">Mesas</p>
+                <div class="divTextoMesasComandas">
+                    <p class="textoMesasComandas">Mesas</p>
+                </div>
 
-                <!-- Button trigger modal -->
-                <button class="btn btn-primary botaoModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Adicionar nova mesa
-                </button>
+                <div class="divBotaoModal"><!-- Button trigger modal -->
+                    <button class="btn btn-success botaoModal" data-bs-toggle="modal" data-bs-target="#modalAdicionarMesa">
+                        Adicionar nova mesa
+                    </button>
+                </div>
             </div>
 
             <!-- Modal de adicionar mesa -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="modalAdicionarMesa" tabindex="-1" aria-labelledby="modalAdicionarMesaLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Mesa</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar mesa</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -70,19 +73,35 @@
 
             <div class="divInferior">
                 @foreach (session()->get('usuario')->mesas()->get() as $mesa)
-                    <!-- varrer as mesas aqui -->
-                    <p>{{ $mesa->numero }}</p>
-                    <!-- Substitua 'nome' pelo nome da coluna que deseja exibir -->
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-body">
+
+                            <!-- varrer as mesas aqui -->
+                            <p>{{ $mesa->numero }}</p>
+                            <div>
+                                <a href="#" class="btn btn-primary botaoAcessar">Acessar mesa</a>
+                                <a href="#" class="btn btn-danger">Apagar mesa</a>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
 
 
 
-        <div>
-            <p>Comandas</p>
+        <div class="divSuperior">
+            <div class="divTextoMesasComandas">
+                <p class="textoMesasComandas">Comandas</p>
+            </div>
+            <div class="divBotaoModal"><!-- Button trigger modal -->
+                <button class="btn btn-success botaoModal" data-bs-toggle="modal" data-bs-target="#modalAdicionarComanda">
+                    Adicionar nova comanda
+                </button>
+            </div>
+
         </div>
-        <div>
+        <div class="divInferior">
             <!-- varrer as comadas-->
         </div>
     </div>

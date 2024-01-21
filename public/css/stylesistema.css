@@ -34,6 +34,7 @@ header {
 
 
 #divLogo>p {
+    margin-top: 4%;
     margin-left: 2%;
     margin-right: 1%;
     font-family: 'fonteLogo', Arial, Helvetica, sans-serif, monospace;
@@ -92,22 +93,47 @@ header {
 /*Elementos do container*/
 #container {
     margin-top: 3%;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
     border: 1.5px solid black;
     border-radius: 5px;
 }
 
-/*Elementos do form da div mesa*/
-#divMesas {
-    border: 1.5px solid black;
-    border-radius: 5px;
-}
+/*Elementos do form da div mesa e comanda*/
 
 .divSuperior {
     display: flex;
-    align-items: center;
+    justify-content: space-between; /*Aproveita o máximo espaço da div, separando seus filhos para seus extremos*/
     border-bottom: 1.5px solid black;
+    padding: 1%;
+}
+.divInferior{
+    display: flex;
+    border-bottom: 1.5px solid black;
+
+}
+.card-body:first-child>div{
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.card-body:first-child>p{
+    font-family: 'fonteLogo',Arial, sans-serif;
+    font-size: 2vw;
+    background-color: rgb(233, 233, 233);
+    margin-left: 35%;
+    margin-right: 35%;
+    border-radius: 12px;
+
+}
+.botaoAcessar{
+    margin-right: 2%;
+}
+.divTextoMesasComandas{
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
 }
 .textoMesasComandas{
     margin-left: 2%;
@@ -116,16 +142,18 @@ header {
 }
 
 
-
-/*Elementos do form de adicionar mesa*/
+/*Elementos do form de adicionar mesa e comanda*/
 .modal-footer {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.botaoModal {
-    margin-left: 78%;
+.divBotaoModal{
+    display: flex;
+    align-items: center;
+    margin-right: 2%;
 }
+
 
 /* Elementos do footer*/
 footer {
