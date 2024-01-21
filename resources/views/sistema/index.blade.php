@@ -128,13 +128,8 @@
                     <!-- varrer as comadas-->
                 </div>
             </div>
-
         </div>
     </div>
-
-
-
-
 
 
     <footer>
