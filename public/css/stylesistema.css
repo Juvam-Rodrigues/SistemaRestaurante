@@ -53,13 +53,15 @@ header {
     color: black;
 
 }
+
 .submenu-trigger {
     position: relative;
     display: inline-block;
     margin-left: 10%;
     margin-right: 3%;
 }
-.submenu-trigger:hover{
+
+.submenu-trigger:hover {
     cursor: pointer;
 }
 
@@ -88,20 +90,47 @@ header {
 }
 
 /*Elementos do container*/
-#container{
-    margin-top: 2%;
+#container {
+    margin-top: 3%;
     margin-left: 2%;
     margin-right: 2%;
     border: 1.5px solid black;
     border-radius: 5px;
 }
 
+/*Elementos do form da div mesa*/
+#divMesas {
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
 
+.divSuperior {
+    display: flex;
+    align-items: center;
+    border-bottom: 1.5px solid black;
+}
+.textoMesasComandas{
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+
+
+/*Elementos do form de adicionar mesa*/
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.botaoModal {
+    margin-left: 78%;
+}
 
 /* Elementos do footer*/
-footer{
+footer {
     background-color: rgb(233, 233, 233);
     padding: 2%;
     margin-top: 5%;
-    border-top: 1.5px solid black ;
+    border-top: 1.5px solid black;
 }

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class SessaoController extends Controller
 {
-    public function new() {
+    public function nova() {
         return view("sessoes/login");
     }
 
-    public function create(Request $r) {
+    public function criar(Request $r) {
         $email = $r->email;
         $senha = $r->senha;
         
@@ -25,7 +25,7 @@ class SessaoController extends Controller
         }
 
     }
-    public function back(){
+    public function voltar(){
         session()->get('usuario')->deslogar();
         return redirect("/");
     }

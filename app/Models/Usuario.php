@@ -43,4 +43,8 @@ class Usuario extends Model
     {
         return $this->hasMany(Mesa::class);
     }
+    public function criarMesas($numero){
+        $mesa = new Mesa(['numero' => $numero]);
+        $this->mesas()->save($mesa);
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MesaController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\SistemaController;
 use Illuminate\Support\Facades\Route;
@@ -15,11 +16,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [SessaoController::class, 'new']);
-Route::get('/deslogar', [SessaoController::class, 'back']);
-Route::post('/logar', [SessaoController::class, 'create']);
+//Sessão
+Route::get('/', [SessaoController::class, 'nova']);
+Route::get('/deslogar', [SessaoController::class, 'voltar']);
+Route::post('/logar', [SessaoController::class, 'criar']);
 
+//Sistema
 Route::get('/sistema', [SistemaController::class, 'exibir']);
+
+//Mesa
+Route::post('/mesas/adicionar', [MesaController::class, 'criar']);
 
 
 
