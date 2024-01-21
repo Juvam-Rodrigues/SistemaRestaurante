@@ -108,6 +108,7 @@ header {
     padding: 1%;
 }
 .divInferior{
+    padding: 2%;
     display: flex;
     border-bottom: 1.5px solid black;
 

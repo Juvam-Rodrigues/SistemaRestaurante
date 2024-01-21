@@ -61,7 +61,7 @@
                             {{ csrf_field() }}
                             <div class="modal-body">
                                 <label for="mumero_mesa">Insira o número da nova mesa:</label>
-                                <input type="text" class="form-control" id="numero" name="numero">
+                                <input type="text" class="form-control" id="numero" name="numero" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Adicionar</button>
@@ -114,8 +114,8 @@
                         <form action="/comandas/adicionar" method="post">
                             {{ csrf_field() }}
                             <div class="modal-body">
-                                <label for="mumero_mesa">Insira o número da nova mesa:</label>
-                                <input type="text" class="form-control" id="numero" name="numero">
+                                <label for="mumero_mesa">Insira o nome da nova comanda:</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Adicionar</button>

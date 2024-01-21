@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('comandas', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 200);
-            $table->boolean('status');
-            $table->string('valor', 10000);
+            $table->integer('status')->default(0);
+            $table->string('valor', 10000)->default('0');
             $table->foreIgnId('mesa_id') -> constrained();
 
             $table->timestamps();
