@@ -31,22 +31,22 @@
         </div>
     </header>
 
-    <div id="container">
+    <div id="container" class="row">
+        <div class="divContainerMesa">
+            <div class="row">
+                <div class="divSuperior col-12">
+                    <div class="divTextoMesasComandas">
+                        <p class="textoMesasComandas">Mesas</p>
+                    </div>
 
-        <div id="divContainerMesas">
-            <div class="divSuperior">
-                <div class="divTextoMesasComandas">
-                    <p class="textoMesasComandas">Mesas</p>
-                </div>
-
-                <div class="divBotaoModal"><!-- Button trigger modal -->
-                    <button class="btn btn-success botaoModal" data-bs-toggle="modal"
-                        data-bs-target="#modalAdicionarMesa">
-                        Adicionar nova mesa
-                    </button>
+                    <div class="divBotaoModal"><!-- Button trigger modal -->
+                        <button class="btn btn-success botaoModal" data-bs-toggle="modal"
+                            data-bs-target="#modalAdicionarMesa">
+                            Adicionar nova mesa
+                        </button>
+                    </div>
                 </div>
             </div>
-
             <!-- Modal de adicionar mesa -->
             <div class="modal fade" id="modalAdicionarMesa" tabindex="-1" aria-labelledby="modalAdicionarMesaLabel"
                 aria-hidden="true">
@@ -70,23 +70,28 @@
                     </div>
                 </div>
             </div>
-
-            <div class="divInferior row">
-                @foreach (session()->get('usuario')->mesas()->get() as $mesa)
-                    <div class="col-lg-3 col-md-4 col-sm-6 cartoes">
-                        <div class="card text-center" style="margin: 10px;">
-                            <div class="card-body">
-                                <!-- varrer as mesas aqui -->
-                                <p>{{ $mesa->numero }}</p>
-                                <div class="divBotoesCard">
-                                    <a href="#" class="btn btn-primary botaoAcessar">Acessar mesa</a>
-                                    <a href="#" class="btn btn-danger">Apagar mesa</a>
+            <div class="row">
+                <div class="divInferior">
+                    <div class="row">
+                        @foreach (session()->get('usuario')->mesas()->get() as $mesa)
+                            <div class="col-lg-3 col-md-4 col-sm-6 cartoes">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <!-- varrer as mesas aqui -->
+                                        <p>{{ $mesa->numero }}</p>
+                                        <div class="divBotoesCard">
+                                            <a href="#" class="btn btn-primary botaoAcessar">Acessar mesa</a>
+                                            <a href="#" class="btn btn-danger">Apagar mesa</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
             </div>
+        </div>
+
 
         <div class="containerComandas">
             <div class="divSuperior">
@@ -130,7 +135,6 @@
             </div>
         </div>
     </div>
-
 
     <footer>
         <div class="creditos">
