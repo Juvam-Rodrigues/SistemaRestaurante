@@ -71,22 +71,22 @@
                 </div>
             </div>
 
-            <div class="divInferior">
+            <div class="divInferior row">
                 @foreach (session()->get('usuario')->mesas()->get() as $mesa)
-                    <div class="card text-center" style="width: 18rem;">
-                        <div class="card-body">
-
-                            <!-- varrer as mesas aqui -->
-                            <p>{{ $mesa->numero }}</p>
-                            <div>
-                                <a href="#" class="btn btn-primary botaoAcessar">Acessar mesa</a>
-                                <a href="#" class="btn btn-danger">Apagar mesa</a>
+                    <div class="col-lg-3 col-md-4 col-sm-6 cartoes">
+                        <div class="card text-center" style="margin: 10px;">
+                            <div class="card-body">
+                                <!-- varrer as mesas aqui -->
+                                <p>{{ $mesa->numero }}</p>
+                                <div class="divBotoesCard">
+                                    <a href="#" class="btn btn-primary botaoAcessar">Acessar mesa</a>
+                                    <a href="#" class="btn btn-danger">Apagar mesa</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-        </div>
 
         <div class="containerComandas">
             <div class="divSuperior">
