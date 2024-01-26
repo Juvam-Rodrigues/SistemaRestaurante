@@ -24,7 +24,7 @@
         </div>
         <a href="#" class="conteudoHeader">Sobre a empresa</a>
         <div class="submenu-trigger btn conteudoHeader" id="submenu-trigger" onclick="submenuAbrir()">
-            <span> {{ session()->get('usuario')->nome }} </span>
+            <span id="nomeUsuario"> {{ session()->get('usuario')->nome }} </span>
             <div class="submenu" id="submenu">
                 <a href="/deslogar">Deslogar</a>
             </div>
@@ -39,7 +39,7 @@
                         <p class="textoMesasComandas">Mesas</p>
                     </div>
 
-                    <div class="divBotaoModal"><!-- Button trigger modal -->
+                    <div class="divBotaoModal">
                         <button class="btn btn-success botaoModal" data-bs-toggle="modal"
                             data-bs-target="#modalAdicionarMesa">
                             Adicionar nova mesa
@@ -70,19 +70,47 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="divInferior">
                     <div class="row">
                         @foreach (session()->get('usuario')->mesas()->get() as $mesa)
-                            <div class="col-lg-3 col-md-4 col-sm-6 cartoes">
+                            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:2%">
                                 <div class="card text-center">
                                     <div class="card-body">
                                         <!-- varrer as mesas aqui -->
                                         <p>{{ $mesa->numero }}</p>
                                         <div class="divBotoesCard">
                                             <a href="#" class="btn btn-primary botaoAcessar">Acessar mesa</a>
-                                            <a href="#" class="btn btn-danger">Apagar mesa</a>
+                                            <a href="#" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#modalApagarMesa{{ $mesa->id }}">Apagar mesa</a>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal de apagar mesa -->
+                            <div class="modal fade" id="modalApagarMesa{{ $mesa->id }}" tabindex="-1"
+                                aria-labelledby="modalApagarMesaLabel{{ $mesa->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Apagar mesa</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <!-- Como esse modal é para ser ativado a partir de o id de cada mesa colocamos o id no target e no modal-->
+                                        <form action="/mesas/apagar/{{ $mesa->id }}" method="post">
+                                            {{ csrf_field() }}
+                                            <div class="modal-body">
+                                                <span>Você tem certeza que deseja apagar a mesa:
+                                                    {{ $mesa->numero }}?</span>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-danger">Sim</button>
+                                                <a href="/sistema" class="btn btn-primary">Não</a>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -92,13 +120,12 @@
             </div>
         </div>
 
-
         <div class="containerComandas">
             <div class="divSuperior">
                 <div class="divTextoMesasComandas">
                     <p class="textoMesasComandas">Comandas</p>
                 </div>
-                <div class="divBotaoModal"><!-- Button trigger modal -->
+                <div class="divBotaoModal">
                     <button class="btn btn-success botaoModal" data-bs-toggle="modal"
                         data-bs-target="#modalAdicionarComanda">
                         Adicionar nova comanda
@@ -128,10 +155,10 @@
                         </form>
                     </div>
                 </div>
+            </div>
 
-                <div class="divInferior">
-                    <!-- varrer as comadas-->
-                </div>
+            <div class="divInferior">
+                <!-- varrer as comadas-->
             </div>
         </div>
     </div>

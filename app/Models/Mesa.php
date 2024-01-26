@@ -12,9 +12,10 @@ class Mesa extends Model
     use HasFactory;
     protected $fillable = ['numero'];
 
-
-
-
+    public function excluirMesa(){
+        $this->usuario()->dissociate(); //Remove a mesa do usuário, a desassociando mesa de usuário.
+        $this->delete();
+    }
     
 
     //Relacionamento um para muitos com comandas

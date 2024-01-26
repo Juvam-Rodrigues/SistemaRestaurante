@@ -26,6 +26,7 @@ Route::get('/sistema', [SistemaController::class, 'exibir']);
 
 //Mesa
 Route::post('/mesas/adicionar', [MesaController::class, 'criar']);
+Route::post('/mesas/apagar/{id}', [MesaController::class, 'apagar']);
 
 
 
