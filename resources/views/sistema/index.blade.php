@@ -121,15 +121,17 @@
         </div>
 
         <div class="containerComandas">
-            <div class="divSuperior">
-                <div class="divTextoMesasComandas">
-                    <p class="textoMesasComandas">Comandas</p>
-                </div>
-                <div class="divBotaoModal">
-                    <button class="btn btn-success botaoModal" data-bs-toggle="modal"
-                        data-bs-target="#modalAdicionarComanda">
-                        Adicionar nova comanda
-                    </button>
+            <div class="row">
+                <div class="divSuperior col-12">
+                    <div class="divTextoMesasComandas">
+                        <p class="textoMesasComandas">Comandas</p>
+                    </div>
+                    <div class="divBotaoModal">
+                        <button class="btn btn-success botaoModal" data-bs-toggle="modal"
+                            data-bs-target="#modalAdicionarComanda">
+                            Adicionar nova comanda
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -156,10 +158,12 @@
                     </div>
                 </div>
             </div>
-
-            <div class="divInferior">
-                <!-- varrer as comadas-->
+            <div class="row">
+                <div class="divInferior col-12">
+                    <!-- varrer as comadas-->
+                </div>
             </div>
+
         </div>
     </div>
 
