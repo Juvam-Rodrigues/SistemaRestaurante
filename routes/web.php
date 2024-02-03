@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComandaController;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\SistemaController;
@@ -27,6 +28,11 @@ Route::get('/sistema', [SistemaController::class, 'exibir']);
 //Mesa
 Route::post('/mesas/adicionar', [MesaController::class, 'criar']);
 Route::post('/mesas/apagar/{id}', [MesaController::class, 'apagar']);
+Route::get('/mesas/acessar/{id}', [MesaController::class, 'acessar']);
+
+//Comandas 
+Route::post('/comandas/adicionar', [ComandaController::class, 'criar']);
+
 
 
 

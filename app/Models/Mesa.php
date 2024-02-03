@@ -13,6 +13,7 @@ class Mesa extends Model
     protected $fillable = ['numero'];
 
     public function excluirMesa(){
+        $this->comandas()->delete();    // Remover comandas associadas, apagando
         $this->usuario()->dissociate(); //Remove a mesa do usuário, a desassociando mesa de usuário.
         $this->delete();
     }

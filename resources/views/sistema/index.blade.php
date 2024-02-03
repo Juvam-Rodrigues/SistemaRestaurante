@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <link rel="icon" href="img/LOGO.png">
+    <link rel="icon" href="{{ asset('img/LOGO.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/stylesistema.css') }}">
@@ -19,7 +19,8 @@
 <body>
     <header>
         <div id="divLogo">
-            <img src="img/LOGO.png" alt="Logo do Restaurante Dos Irmãos" width="90px" height="90px" id="logo">
+            <img src="{{ asset('img/LOGO.png') }}" alt="Logo do Restaurante Dos Irmãos" width="90px" height="90px"
+                id="logo">
             <p>Restaurante Dos Irmãos</p>
         </div>
         <a href="#" class="conteudoHeader">Sobre a empresa</a>
@@ -74,21 +75,21 @@
             <div class="row">
                 <div class="divInferior">
                     <div class="row">
+                        <!-- No loop das mesas -->
                         @foreach (session()->get('usuario')->mesas()->get() as $mesa)
                             <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:2%">
                                 <div class="card text-center">
                                     <div class="card-body">
-                                        <!-- varrer as mesas aqui -->
                                         <p>{{ $mesa->numero }}</p>
                                         <div class="divBotoesCard">
-                                            <a href="#" class="btn btn-primary botaoAcessar">Acessar mesa</a>
+                                            <a href="/mesas/acessar/{{ $mesa->id }}"
+                                                class="btn btn-primary botaoAcessar"  id="botao{{ $mesa->id }}" onclick="mudarCorBotao(this)">Acessar mesa</a>
                                             <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#modalApagarMesa{{ $mesa->id }}">Apagar mesa</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <!-- Modal de apagar mesa -->
                             <div class="modal fade" id="modalApagarMesa{{ $mesa->id }}" tabindex="-1"
                                 aria-labelledby="modalApagarMesaLabel{{ $mesa->id }}" aria-hidden="true">
@@ -148,8 +149,15 @@
                         <form action="/comandas/adicionar" method="post">
                             {{ csrf_field() }}
                             <div class="modal-body">
-                                <label for="mumero_mesa">Insira o nome da nova comanda:</label>
+                                <label for="nome">Insira o nome da nova comanda:</label>
                                 <input type="text" class="form-control" id="nome" name="nome" required>
+
+                                <label for="mesa_id">Selecione a mesa:</label>
+                                <select class="form-control" id="mesa_id" name="mesa_id" required>
+                                    @foreach (session()->get('usuario')->mesas()->get() as $mesa)
+                                        <option value="{{ $mesa->id }}">{{ $mesa->numero }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Adicionar</button>
@@ -158,9 +166,31 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
-                <div class="divInferior col-12">
-                    <!-- varrer as comadas-->
+                <div class="divInferior">
+                    <div class="divMesaAtualTxt col-12" style="margin-bottom: 1%">
+                        @if (isset($mesas))
+                            <h1>Mesa atual: <span style="color: red">{{ $mesas->numero }}</span></h1>
+                        @endif
+                    </div>
+                    <div class="row col-12">
+                        @if (isset($comandas))
+                            @foreach ($comandas as $comanda)
+                                <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:2%">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <p class="card-text">{{ $comanda->nome }}</p>
+                                            <div class="divBotoesCard">
+                                                <a href="#" class="btn btn-primary botaoAcessar">Acessar comanda</a>
+                                                <a href="#" class="btn btn-danger" data-bs-toggle="modal">Apagar comanda</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
 
