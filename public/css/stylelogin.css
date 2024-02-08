@@ -75,7 +75,7 @@ header {
 }
 
 /* Elementos do form*/
-#divForm{
+#divForm {
     margin-left: 10%;
     display: flex;
     align-items: center;
@@ -91,19 +91,21 @@ header {
     /* Garante que os itens se empilhem verticalmente */
     border-radius: 12px;
 }
-#formlogin > h1{
+
+#formlogin>h1 {
     margin-bottom: 12px;
     font-size: 50px;
     font-family: "fonteLogo", Arial, Helvetica, sans-serif;
 }
 
 #email,
-#senha{
+#senha {
     margin-bottom: 12px;
     width: 30vw;
     height: 4vh;
 }
-#enviar{
+
+#enviar {
     margin-top: 5px;
     width: 10vw;
     height: 4vh;
@@ -112,16 +114,25 @@ header {
     border-radius: 5px;
 
 }
-#enviar:hover{
+
+#enviar:hover {
     background-color: rgb(3, 182, 3);
     color: white;
 
 }
 
+#olho {
+    position: absolute;
+    cursor: pointer;
+    width: 20px;
+    right: 2%;
+    top: 10%;
+}
+
 /* Elementos do footer*/
-footer{
+footer {
     background-color: rgb(233, 233, 233);
     padding: 2%;
     margin-top: 5%;
-    border-top: 1.5px solid black ;
+    border-top: 1.5px solid black;
 }

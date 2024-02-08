@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="icon" href="img/LOGO.png">
     <link rel="stylesheet" href="{{ asset('css/stylelogin.css') }}">
+    <script src="{{ asset('js/script.js') }}" defer></script>
+
     <title>Login</title>
 </head>
 
@@ -31,7 +33,10 @@
 
                 <h1>Login</h1>
                 <input type="email" name="email" id="email" placeholder="Digite seu email" required>
-                <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+                <div style="position: relative">
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+                    <img src="img/olho.png" alt="" id="olho">
+                </div>
                 <button type="submit" id="enviar">Entrar</button>
             </form>
         </div>
