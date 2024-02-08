@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="icon" href="{{ asset('img/LOGO.png') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/stylesistema.css') }}">
     <script src="{{ asset('js/script.js') }}" defer></script>
@@ -181,6 +181,11 @@
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <p class="card-text">{{ $comanda->nome }}</p>
+                                            @if($comanda->status === 0)
+                                                <span class="mb-3 btn btn-warning">Não pago</span>
+                                            @elseif($comanda->status === 1)
+                                                <span class="mb-3 btn btn-info">Pago</span>
+                                            @endif
                                             <div class="divBotoesCard">
                                                 <a href="#" class="btn btn-primary botaoAcessar">Acessar comanda</a>
                                                 <a href="#" class="btn btn-danger" data-bs-toggle="modal">Apagar comanda</a>
