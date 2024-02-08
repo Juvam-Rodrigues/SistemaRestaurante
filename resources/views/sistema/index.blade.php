@@ -185,9 +185,9 @@
                                         <div class="card-body">
                                             <p class="card-text">{{ $comanda->nome }}</p>
                                             @if ($comanda->status === 0)
-                                                <span class="mb-3 btn btn-warning">Não pago</span>
+                                                <span class="mb-3 btn btn-warning">Status: Não pago</span>
                                             @elseif($comanda->status === 1)
-                                                <span class="mb-3 btn btn-info">Pago</span>
+                                                <span class="mb-3 btn btn-info">Status: Pago</span>
                                             @endif
                                             <div class="divBotoesCard">
                                                 <a href="#" class="btn btn-primary botaoAcessar">Acessar
