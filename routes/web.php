@@ -32,6 +32,8 @@ Route::get('/mesas/acessar/{id}', [MesaController::class, 'acessar']);
 
 //Comandas 
 Route::post('/comandas/adicionar', [ComandaController::class, 'criar']);
+Route::post('/comandas/apagar/{id}', [ComandaController::class, 'apagar']);
+
 
 
 

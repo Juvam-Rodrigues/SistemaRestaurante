@@ -33,6 +33,7 @@
     </header>
 
     <div id="container" class="row">
+
         <div class="divContainerMesa">
             <div class="row">
                 <div class="divSuperior col-12">
@@ -83,7 +84,8 @@
                                         <p>{{ $mesa->numero }}</p>
                                         <div class="divBotoesCard">
                                             <a href="/mesas/acessar/{{ $mesa->id }}"
-                                                class="btn btn-primary botaoAcessar"  id="botao{{ $mesa->id }}" onclick="mudarCorBotao(this)">Acessar mesa</a>
+                                                class="btn btn-primary botaoAcessar" id="botao{{ $mesa->id }}"
+                                                onclick="mudarCorBotao(this)">Acessar mesa</a>
                                             <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#modalApagarMesa{{ $mesa->id }}">Apagar mesa</a>
                                         </div>
@@ -109,7 +111,8 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-danger">Sim</button>
-                                                <a href="/sistema" class="btn btn-primary">Não</a>
+                                                <button type="button" class="btn btn-primary"
+                                                    data-bs-dismiss="modal" aria-label="Close">Não</button>
                                             </div>
                                         </form>
                                     </div>
@@ -181,15 +184,46 @@
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <p class="card-text">{{ $comanda->nome }}</p>
-                                            @if($comanda->status === 0)
+                                            @if ($comanda->status === 0)
                                                 <span class="mb-3 btn btn-warning">Não pago</span>
                                             @elseif($comanda->status === 1)
                                                 <span class="mb-3 btn btn-info">Pago</span>
                                             @endif
                                             <div class="divBotoesCard">
-                                                <a href="#" class="btn btn-primary botaoAcessar">Acessar comanda</a>
-                                                <a href="#" class="btn btn-danger" data-bs-toggle="modal">Apagar comanda</a>
+                                                <a href="#" class="btn btn-primary botaoAcessar">Acessar
+                                                    comanda</a>
+                                                <a href="#" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#modalApagarComanda{{ $comanda->id }}">Apagar
+                                                    comanda</a>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal de apagar comanda -->
+                                <div class="modal fade" id="modalApagarComanda{{ $comanda->id }}" tabindex="-1"
+                                    aria-labelledby="modalApagarComandaLabel{{ $comanda->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Apagar Comanda
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <!-- Como esse modal é para ser ativado a partir de o id de cada mesa colocamos o id no target e no modal-->
+                                            <form action="/comandas/apagar/{{ $comanda->id }}" method="post">
+                                                {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <span>Você tem certeza que deseja apagar a comanda de:
+                                                        {{ $comanda->nome }}?</span>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger">Sim</button>
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-dismiss="modal" aria-label="Close">Não</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -198,10 +232,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
     <footer>
         <div class="creditos">
             <p>Todos direitos reservado a <br>
