@@ -118,6 +118,7 @@ header {
 #enviar:hover {
     background-color: rgb(3, 182, 3);
     color: white;
+    cursor: pointer;
 
 }
 

@@ -66,6 +66,9 @@ header {
 
 .submenu-trigger:hover {
     cursor: pointer;
+    background-color: white;
+    border: 1px solid black;
+
 }
 
 .submenu {
@@ -89,7 +92,6 @@ header {
 
 .submenu a:hover {
     border-radius: 12px;
-    background-color: #f0f0f0;
 }
 
 /*Elementos do container*/
