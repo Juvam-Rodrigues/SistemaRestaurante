@@ -11,6 +11,8 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/stylesistema.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styledentrocomanda.css') }}">
+
     <script src="{{ asset('js/script.js') }}" defer></script>
 
     <title>Sistema</title>
@@ -32,21 +34,21 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="container" id="container">
         @if (isset($comanda) && isset($mesa))
             <div class="row">
                 <div id="divDescricaoComanda" class="col-4">
                     <div class="row">
                         <div class="col-6">
-                            <p>Comanda de: {{ $comanda->nome }}</p>
-                            <p>Mesa: {{ $mesa->numero }}</p>
+                            <p><strong>Comanda de:</strong> {{ $comanda->nome }}</p>
+                            <p><strong>Mesa:</strong> {{ $mesa->numero }}</p>
                         </div>
                         <div class="col-6">
-                            <p>Valor: R${{ $comanda->valor }}.</p>
+                            <p><strong>Valor: R${{ $comanda->valor }}.</strong></p>
                             @if ($comanda->status === 0)
-                                <p>Status: Não pago.</p>
+                                <p><strong>Status:</strong> Não pago.</p>
                             @elseif($comanda->status === 1)
-                                <p>Status: Pago.</p>
+                                <p><strong>Status:</strong> Pago.</p>
                             @endif
                         </div>
                     </div>
