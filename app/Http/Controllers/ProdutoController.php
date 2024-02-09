@@ -7,22 +7,30 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function adicionarProduto(Request $request)
+    public function criar(Request $request)
     {
+
+        // Validação de entrada
         $request->validate([
             'nome' => 'required|string',
             'descricao' => 'nullable|string',
             'preco' => 'required|numeric',
+            'categoria' => 'nullable|string',
         ]);
 
-        $produto = new Produto();
-        $produto->nome = $request->input('nome');
-        $produto->descricao = $request->input('descricao');
-        $produto->preco = $request->input('preco');
 
-        $produto->save();
+        // Criação de novo produto
+        Produto::create([
+            'nome' => $request->input('nome'),
+            'descricao' => $request->input('descricao'),
+            'preco' => $request->input('preco'),
+            'categoria' => $request->input('categoria'),
+        ]);
 
-        return redirect()->route('/comandas/acessar/{id}')
-            ->with('success', 'Produto adicionado com sucesso!');
+
+        // Redirecionamento ou resposta adequada
+        return back()->with('success', 'Produto adicionado com sucesso!'); 
+        //Rediriciona para a página anterior (no caso, página atual) após a operação ser concluída com sucesso.
+
     }
 }

@@ -60,45 +60,74 @@
                             <div class="divTextoProduto">
                                 <p class="textoProduto">Produtos</p>
                             </div>
-
                             <div class="divBotaoModal">
                                 <button class="btn btn-success botaoModal" data-bs-toggle="modal"
                                     data-bs-target="#modalAdicionarProduto">
                                     Adicionar produto no catálogo
                                 </button>
                             </div>
-
-                            <!-- Modal de adicionar produto no catálogo de produtos-->
-                            <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
-                                aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
-                                                catálogo</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <form action="/produtos/adicionar" method="post">
-                                            {{ csrf_field() }}
-                                            <div class="modal-body">
-                                                <label for="mumero_mesa">Insira o nome:</label>
-                                                <input type="text" class="form-control" id="numero" name="numero"
-                                                    required>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Adicionar</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="divConteudoSecoes col-12">
+                            
                         </div>
                     </div>
                 </div>
 
 
+            </div>
+
+
+            <!-- Modal de adicionar produto no catálogo de produtos-->
+            <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
+                aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
+                                catálogo</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+
+                        <form action="/produtos/adicionar" method="post">
+                            {{ csrf_field() }}
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nome" class="form-label">Insira o nome:</label>
+                                    <input type="text" class="form-control" id="nome" name="nome" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descricao" class="form-label">Insira a
+                                        descrição:</label>
+                                    <textarea class="form-control" id="descricao" name="descricao" rows="5"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoria" class="form-label">Selecione a Categoria:</label>
+                                    <select class="form-select" id="categoria" name="categoria" required>
+                                        <option value="Almoço/Quentinha">Almoço/Quentinha</option>
+                                        <option value="CafeDaManha">Café da manhã</option>
+                                        <option value="Bebidas">Bebidas</option>
+                                        <option value="Sobremesas">Sobremesas</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="valor" class="form-label">Insira o valor unitário:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">R$</span>
+                                        <input type="number" step="0.01" class="form-control" id="preco"
+                                            name="preco" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         @endif
     </div>

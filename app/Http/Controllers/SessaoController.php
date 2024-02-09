@@ -17,7 +17,7 @@ class SessaoController extends Controller
         
         $comparacao = Usuario::logar($email, $senha);
 
-        if($comparacao==true){
+        if($comparacao){
             return redirect("/sistema");
 
         }else{

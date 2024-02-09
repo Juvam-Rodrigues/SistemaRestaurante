@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ComandaController;
+use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\SistemaController;
@@ -34,6 +35,9 @@ Route::get('/mesas/acessar/{id}', [MesaController::class, 'acessar']);
 Route::post('/comandas/adicionar', [ComandaController::class, 'criar']);
 Route::post('/comandas/apagar/{id}', [ComandaController::class, 'apagar']);
 Route::get('/comandas/acessar/{id}', [ComandaController::class, 'acessar']);
+
+//Produtos
+Route::post('/produtos/adicionar', [ProdutoController::class, 'criar']);
 
 
 

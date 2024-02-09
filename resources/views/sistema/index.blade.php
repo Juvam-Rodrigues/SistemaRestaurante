@@ -75,7 +75,7 @@
 
             <div class="row">
                 <div class="divInferior" style="border-bottom: 1px solid black">
-                    <div class="row">
+                    <div class="row col-12">
                         <!-- No loop das mesas -->
                         @foreach (session()->get('usuario')->mesas()->get() as $mesa)
                             <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:2%">
