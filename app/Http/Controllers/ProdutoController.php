@@ -29,8 +29,16 @@ class ProdutoController extends Controller
 
 
         // Redirecionamento ou resposta adequada
-        return back()->with('success', 'Produto adicionado com sucesso!'); 
+        return back()->with('success', 'Produto adicionado com sucesso!');
         //Rediriciona para a página anterior (no caso, página atual) após a operação ser concluída com sucesso.
 
     }
+    public function listarProdutos(Request $request)
+    {
+        $categoria = $request->query('categoria');
+        $produtosPorCategoria = Produto::where('categoria', $categoria)->get();
+
+        return redirect()->back()->with('produtosPorCategoria', $produtosPorCategoria);
+    }
+
 }

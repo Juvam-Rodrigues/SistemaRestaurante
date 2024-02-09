@@ -33,6 +33,11 @@
             </div>
         </div>
     </header>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="container">
         @if (isset($comanda) && isset($mesa))
@@ -68,13 +73,31 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row border-bottom border-dark">
+
+                    <div class="row border-bottom border-dark p-3">
                         <div class="divConteudoSecoes col-12">
                             <!-- Mostrar as opções de categoria-->
+                            <a href="{{ url('/produtos/listar?categoria=AlmocoOuQuentinha') }}"
+                                class="btn btn-primary mx-3">Almoço/Quentinha</a>
+                            <a href="{{ url('/produtos/listar?categoria=CafeDaManha') }}" class="btn btn-primary mx-3">Café da
+                                manhã</a>
+                            <a href="{{ url('/produtos/listar?categoria=Bebidas') }}" class="btn btn-primary mx-3">Bebidas</a>
+                            <a href="{{ url('/produtos/listar?categoria=Sobremesas') }}"
+                                class="btn btn-primary mx-3">Sobremesas</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="divProdutos col-12">
+                            <!-- Mostrar os produtos disponíveis-->
+                            @if (isset($produtosPorCategoria))
+                                @foreach ($produtosPorCategoria as $produto)
+                                    <div class="btn btn-primary">{{ $produto->nome }}</div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
-
 
             </div>
 
@@ -106,7 +129,7 @@
                                 <div class="mb-3">
                                     <label for="categoria" class="form-label">Selecione a Categoria:</label>
                                     <select class="form-select" id="categoria" name="categoria" required>
-                                        <option value="Almoço/Quentinha">Almoço/Quentinha</option>
+                                        <option value="AlmocoOuQuentinha">Almoço/Quentinha</option>
                                         <option value="CafeDaManha">Café da manhã</option>
                                         <option value="Bebidas">Bebidas</option>
                                         <option value="Sobremesas">Sobremesas</option>

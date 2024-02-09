@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comanda;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class ComandaController extends Controller
@@ -33,10 +34,12 @@ class ComandaController extends Controller
     public function acessar($id) {
         $comanda = Comanda::find($id);
         $mesa = $comanda->mesa;
+        $produtos = Produto::all()->groupBy('categoria');// Obtém todos os produtos disponíveis, agrupando por categoria.
+
 
         if ($comanda != null)
         {
-            return view("comanda/comanda", compact('comanda', 'mesa'));
+            return view("comanda/comanda", compact('comanda', 'mesa', 'produtos'));
         }
         return redirect('/sistema');
     }
