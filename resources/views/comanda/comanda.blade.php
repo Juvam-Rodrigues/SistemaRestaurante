@@ -64,9 +64,36 @@
                             <div class="divBotaoModal">
                                 <button class="btn btn-success botaoModal" data-bs-toggle="modal"
                                     data-bs-target="#modalAdicionarProduto">
-                                    Adicionar produto
+                                    Adicionar produto no catálogo
                                 </button>
                             </div>
+
+                            <!-- Modal de adicionar produto no catálogo de produtos-->
+                            <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
+                                aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
+                                                catálogo</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form action="/produtos/adicionar" method="post">
+                                            {{ csrf_field() }}
+                                            <div class="modal-body">
+                                                <label for="mumero_mesa">Insira o nome:</label>
+                                                <input type="text" class="form-control" id="numero" name="numero"
+                                                    required>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

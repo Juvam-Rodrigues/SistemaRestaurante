@@ -13,7 +13,7 @@ class ProdutoController extends Controller
             'nome' => 'required|string',
             'descricao' => 'nullable|string',
             'preco' => 'required|numeric',
-            'quantidade' => 'required|integer',
+            'quantidade' => 'nullable|integer',
         ]);
 
         $produto = new Produto();

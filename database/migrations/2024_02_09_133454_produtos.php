@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('nome');
             $table->text('descricao')->nullable();
             $table->decimal('preco', 8, 2);
-            $table->integer('quantidade')->default(0); // Adicionando o novo campo quantidade
+            $table->integer('quantidade')->nullable()->default(0); // Permitindo valores nulos
             // Adicione outros campos conforme necessário
             $table->timestamps();
         });
