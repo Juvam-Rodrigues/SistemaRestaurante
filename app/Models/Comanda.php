@@ -11,7 +11,8 @@ class Comanda extends Model
     protected $fillable = ['nome', 'status', 'valor', 'mesa_id'];
 
 
-    public function excluirComanda(){
+    public function excluirComanda()
+    {
         $this->mesa()->dissociate(); //Remove a mesa do usuário, a desassociando mesa de usuário.
         $this->delete();
     }
@@ -20,4 +21,11 @@ class Comanda extends Model
     {
         return $this->belongsTo(Mesa::class);
     }
+    // Relacionamento muitas pedidos para uma comanda
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class);
+    }
+
 }
