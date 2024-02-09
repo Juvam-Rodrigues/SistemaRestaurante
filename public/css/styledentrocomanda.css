@@ -6,6 +6,7 @@
 #divProdutosComanda>.row{
     padding: 1%;
 }
+
 .divSuperior {
     display: flex;
     justify-content: space-between; /*Aproveita o máximo espaço da div, separando seus filhos para seus extremos*/

@@ -68,9 +68,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row border-bottom border-dark">
                         <div class="divConteudoSecoes col-12">
-                            
+                            <!-- Mostrar as opções de categoria-->
                         </div>
                     </div>
                 </div>
