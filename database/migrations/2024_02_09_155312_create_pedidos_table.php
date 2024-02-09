@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('comanda_id')->constrained(); // assumindo que você tem uma tabela comandas
             $table->foreignId('produto_id')->constrained('produtos'); // assumindo que a tabela de produtos é 'produtos'
-            $table->integer('quantidade');
+            $table->integer('quantidade')->nullable()->default(0);
             $table->decimal('valor_unitario', 8, 2);
             $table->timestamps();
         });

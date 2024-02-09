@@ -13,15 +13,12 @@ class ProdutoController extends Controller
             'nome' => 'required|string',
             'descricao' => 'nullable|string',
             'preco' => 'required|numeric',
-            'quantidade' => 'nullable|integer',
         ]);
 
         $produto = new Produto();
         $produto->nome = $request->input('nome');
         $produto->descricao = $request->input('descricao');
         $produto->preco = $request->input('preco');
-        $produto->quantidade = $request->input('quantidade');
-
 
         $produto->save();
 
