@@ -190,7 +190,7 @@
                                                 <span class="mb-3 btn btn-info">Status: Pago</span>
                                             @endif
                                             <div class="divBotoesCard">
-                                                <a href="#" class="btn btn-primary botaoAcessar">Acessar
+                                                <a href="/comandas/acessar/{{ $comanda->id }}" class="btn btn-primary botaoAcessar">Acessar
                                                     comanda</a>
                                                 <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                                                     data-bs-target="#modalApagarComanda{{ $comanda->id }}">Apagar

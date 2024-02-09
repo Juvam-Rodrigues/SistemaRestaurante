@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comanda;
+
 use Illuminate\Http\Request;
 
 class ComandaController extends Controller
@@ -28,6 +29,16 @@ class ComandaController extends Controller
     {
         Comanda::findOrFail($id)->excluirComanda();
         return redirect("/sistema");
+    }
+    public function acessar($id) {
+        $comanda = Comanda::find($id);
+        $mesa = $comanda->mesa;
+
+        if ($comanda != null)
+        {
+            return view("comanda/comanda", compact('comanda', 'mesa'));
+        }
+        return redirect('/sistema');
     }
 
 
