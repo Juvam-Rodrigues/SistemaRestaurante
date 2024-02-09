@@ -34,7 +34,7 @@
         </div>
     </header>
 
-    <div class="container" id="container">
+    <div class="container">
         @if (isset($comanda) && isset($mesa))
             <div class="row">
                 <div id="divDescricaoComanda" class="col-4">
@@ -55,8 +55,22 @@
 
                 </div>
                 <div id="divProdutosComanda" class="col-8">
+                    <div class="row">
+                        <div class="divSuperior col-12">
+                            <div class="divTextoProduto">
+                                <p class="textoProduto">Produtos</p>
+                            </div>
 
+                            <div class="divBotaoModal">
+                                <button class="btn btn-success botaoModal" data-bs-toggle="modal"
+                                    data-bs-target="#modalAdicionarProduto">
+                                    Adicionar produto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
 
             </div>
         @endif

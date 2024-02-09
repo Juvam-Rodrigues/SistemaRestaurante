@@ -1,3 +1,32 @@
 #divDescricaoComanda{
     border-right: solid black 1px ;
+    padding: 2%;
+}
+
+#divProdutosComanda>.row{
+    border-bottom: 1px solid black;
+    padding: 1%;
+}
+.divSuperior {
+    display: flex;
+    justify-content: space-between; /*Aproveita o máximo espaço da div, separando seus filhos para seus extremos*/
+    border-bottom: none;
+}
+
+.container{
+    margin-top: 2%;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+/*Produtos */
+.divTextoProduto{
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+}
+.textoProduto{
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
