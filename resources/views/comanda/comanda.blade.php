@@ -55,7 +55,7 @@
 
                 </div>
                 <div id="divProdutosComanda" class="col-8">
-                    <div class="row">
+                    <div class="row border-bottom border-dark">
                         <div class="divSuperior col-12">
                             <div class="divTextoProduto">
                                 <p class="textoProduto">Produtos</p>
