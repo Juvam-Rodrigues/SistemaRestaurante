@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ProdutoController extends Controller
 {
@@ -33,12 +35,16 @@ class ProdutoController extends Controller
         //Rediriciona para a página anterior (no caso, página atual) após a operação ser concluída com sucesso.
 
     }
-    public function listarProdutos(Request $request)
+    
+    public function listarPorCategoria($categoria)
     {
-        $categoria = $request->query('categoria');
-        $produtosPorCategoria = Produto::where('categoria', $categoria)->get();
+        // Buscar produtos comuns por categoria no banco de dados
+        $produtosPorCategoria = DB::table('produtos')
+            ->where('categoria', $categoria)
+            ->get();
 
-        return redirect()->back()->with('produtosPorCategoria', $produtosPorCategoria);
+        // Passar os produtos para a view
+        return back()->with('produtosPorCategoria', $produtosPorCategoria);    
     }
 
 }

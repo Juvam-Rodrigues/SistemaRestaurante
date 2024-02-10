@@ -38,7 +38,7 @@ Route::get('/comandas/acessar/{id}', [ComandaController::class, 'acessar']);
 
 //Produtos
 Route::post('/produtos/adicionar', [ProdutoController::class, 'criar']);
-Route::get('/produtos/listar', [ProdutoController::class, 'listarProdutos']);
+Route::get('/produtos/listar/{categoria}', [ProdutoController::class, 'listarPorCategoria']);
 
 
 

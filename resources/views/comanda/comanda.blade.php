@@ -63,7 +63,8 @@
                     <div class="row border-bottom border-dark">
                         <div class="divSuperior col-12">
                             <div class="divTextoProduto">
-                                <p class="textoProduto">Produtos</p>
+                                <span class="textoProduto">Produtos</span>
+                                <span class="textoProduto">disponíveis</span>
                             </div>
                             <div class="divBotaoModal">
                                 <button class="btn btn-success botaoModal" data-bs-toggle="modal"
@@ -77,12 +78,13 @@
                     <div class="row border-bottom border-dark p-3">
                         <div class="divConteudoSecoes col-12">
                             <!-- Mostrar as opções de categoria-->
-                            <a href="{{ url('/produtos/listar?categoria=AlmocoOuQuentinha') }}"
+                            <a href="{{ url('/produtos/listar', ['categoria' => 'AlmocoOuQuentinha']) }}"
                                 class="btn btn-primary mx-3">Almoço/Quentinha</a>
-                            <a href="{{ url('/produtos/listar?categoria=CafeDaManha') }}" class="btn btn-primary mx-3">Café da
-                                manhã</a>
-                            <a href="{{ url('/produtos/listar?categoria=Bebidas') }}" class="btn btn-primary mx-3">Bebidas</a>
-                            <a href="{{ url('/produtos/listar?categoria=Sobremesas') }}"
+                            <a href="{{ url('/produtos/listar', ['categoria' => 'CafeDaManha']) }}"
+                                class="btn btn-primary mx-3">Café da manhã</a>
+                            <a href="{{ url('/produtos/listar', ['categoria' => 'Bebidas']) }}"
+                                class="btn btn-primary mx-3">Bebidas</a>
+                            <a href="{{ url('/produtos/listar', ['categoria' => 'Sobremesas']) }}"
                                 class="btn btn-primary mx-3">Sobremesas</a>
                         </div>
                     </div>
@@ -90,8 +92,8 @@
                     <div class="row">
                         <div class="divProdutos col-12">
                             <!-- Mostrar os produtos disponíveis-->
-                            @if (isset($produtosPorCategoria))
-                                @foreach ($produtosPorCategoria as $produto)
+                            @if (session('produtosPorCategoria'))
+                                @foreach (session('produtosPorCategoria') as $produto)
                                     <div class="btn btn-primary">{{ $produto->nome }}</div>
                                 @endforeach
                             @endif
