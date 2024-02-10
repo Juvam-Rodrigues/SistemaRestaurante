@@ -45,180 +45,185 @@
         </div>
     @endif
 
-    <div class="container">
-        @if (isset($comanda) && isset($mesa))
-            <div class="row">
-                <div id="divDescricaoComanda" class="col-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <p><strong>Comanda de:</strong> {{ $comanda->nome }}</p>
-                            <p><strong>Mesa:</strong> {{ $mesa->numero }}</p>
+    <div class="row">
+        <div class="container col-11">
+            @if (isset($comanda) && isset($mesa))
+                <div class="row">
+                    <div id="divDescricaoComanda" class="col-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <p><strong>Comanda de:</strong> {{ $comanda->nome }}</p>
+                                <p><strong>Mesa:</strong> {{ $mesa->numero }}</p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong>Valor: R${{ $comanda->valor }}.</strong></p>
+                                @if ($comanda->status === 0)
+                                    <p><strong>Status:</strong> Não pago.</p>
+                                @elseif($comanda->status === 1)
+                                    <p><strong>Status:</strong> Pago.</p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <p><strong>Valor: R${{ $comanda->valor }}.</strong></p>
-                            @if ($comanda->status === 0)
-                                <p><strong>Status:</strong> Não pago.</p>
-                            @elseif($comanda->status === 1)
-                                <p><strong>Status:</strong> Pago.</p>
+
+                    </div>
+                    <div id="divProdutosComanda" class="col-8">
+                        <div class="row border-bottom border-dark">
+                            <div class="divSuperior col-12">
+                                <div class="divTextoProduto">
+                                    <span class="textoProduto">Produtos</span>
+                                    <span class="textoProduto">disponíveis</span>
+                                </div>
+                                <div class="divBotaoModal">
+                                    <button class="btn btn-success botaoModal" data-bs-toggle="modal"
+                                        data-bs-target="#modalAdicionarProduto">
+                                        Adicionar produto no catálogo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row border-bottom border-dark p-3">
+                            <div class="divConteudoSecoes col-12">
+                                <!-- Mostrar as opções de categoria-->
+                                <a href="{{ url('/produtos/listar', ['categoria' => 'AlmocoOuQuentinha']) }}"
+                                    class="btn btn-primary mx-3">Almoço/Quentinha</a>
+                                <a href="{{ url('/produtos/listar', ['categoria' => 'CafeDaManha']) }}"
+                                    class="btn btn-primary mx-3">Café da manhã</a>
+                                <a href="{{ url('/produtos/listar', ['categoria' => 'Bebidas']) }}"
+                                    class="btn btn-primary mx-3">Bebidas</a>
+                                <a href="{{ url('/produtos/listar', ['categoria' => 'Sobremesas']) }}"
+                                    class="btn btn-primary mx-3">Sobremesas</a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Mostrar os produtos disponíveis-->
+                            @if (session('produtosPorCategoria'))
+                                @foreach (session('produtosPorCategoria') as $produto)
+                                    <div class="col-lg-4 col-md-4 col-sm-6 p-2" style="margin-bottom:2%">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <p>{{ $produto->nome }}</p>
+                                                <div class="divBreveDescricaoLerMais">
+                                                    <div class="divBreveDescricao">
+                                                        <span class="breve-descricao">{{ $produto->descricao }}</span>
+                                                    </div>
+                                                    <div class="divLerMais">
+                                                        <button
+                                                            class="btn btn-link btn-sm link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalDescricao{{ $produto->id }}">
+                                                            Ler Mais
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="divValor">
+                                                    <span><strong>Valor unitário:
+                                                            R${{ $produto->preco }}</strong></span>
+                                                </div>
+                                                <div class="divBotoesCard mt-2">
+                                                    <a href="#"
+                                                        class="btn btn-primary botaoAdicionar me-2 d-flex align-items-center justify-content-center textoBotoesCard"
+                                                        id="botao{{ $produto->id }}"
+                                                        onclick="mudarCorBotao(this)">Adicionar produto</a>
+                                                    <a href="#" class="btn btn-danger textoBotoesCard"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalApagarProduto{{ $produto->id }}">Apagar
+                                                        produto da categoria</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Modal de apagar produto -->
+                                    <div class="modal fade" id="modalApagarProduto{{ $produto->id }}" tabindex="-1"
+                                        aria-labelledby="modalApagarLabel{{ $produto->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Apagar produto
+                                                        do
+                                                        catálogo</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <!-- Como esse modal é para ser ativado a partir de o id de cada mesa colocamos o id no target e no modal-->
+                                                <form action="/produtos/apagar/{{ $produto->id }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    <div class="modal-body">
+                                                        <span>Você tem certeza que deseja apagar o produto:
+                                                            {{ $produto->nome }}?</span>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger">Sim</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-bs-dismiss="modal" aria-label="Close">Não</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             @endif
                         </div>
                     </div>
 
                 </div>
-                <div id="divProdutosComanda" class="col-8">
-                    <div class="row border-bottom border-dark">
-                        <div class="divSuperior col-12">
-                            <div class="divTextoProduto">
-                                <span class="textoProduto">Produtos</span>
-                                <span class="textoProduto">disponíveis</span>
+        </div>
+
+
+
+        <!-- Modal de adicionar produto no catálogo de produtos-->
+        <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
+            aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
+                            catálogo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <form action="/produtos/adicionar" method="post">
+                        {{ csrf_field() }}
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Insira o nome:</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
                             </div>
-                            <div class="divBotaoModal">
-                                <button class="btn btn-success botaoModal" data-bs-toggle="modal"
-                                    data-bs-target="#modalAdicionarProduto">
-                                    Adicionar produto no catálogo
-                                </button>
+                            <div class="mb-3">
+                                <label for="descricao" class="form-label">Insira a
+                                    descrição:</label>
+                                <textarea class="form-control" id="descricao" name="descricao" rows="5"></textarea>
                             </div>
+                            <div class="mb-3">
+                                <label for="categoria" class="form-label">Selecione a Categoria:</label>
+                                <select class="form-select" id="categoria" name="categoria" required>
+                                    <option value="AlmocoOuQuentinha">Almoço/Quentinha</option>
+                                    <option value="CafeDaManha">Café da manhã</option>
+                                    <option value="Bebidas">Bebidas</option>
+                                    <option value="Sobremesas">Sobremesas</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="valor" class="form-label">Insira o valor unitário:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">R$</span>
+                                    <input type="number" step="0.01" class="form-control" id="preco"
+                                        name="preco" required>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-
-                    <div class="row border-bottom border-dark p-3">
-                        <div class="divConteudoSecoes col-12">
-                            <!-- Mostrar as opções de categoria-->
-                            <a href="{{ url('/produtos/listar', ['categoria' => 'AlmocoOuQuentinha']) }}"
-                                class="btn btn-primary mx-3">Almoço/Quentinha</a>
-                            <a href="{{ url('/produtos/listar', ['categoria' => 'CafeDaManha']) }}"
-                                class="btn btn-primary mx-3">Café da manhã</a>
-                            <a href="{{ url('/produtos/listar', ['categoria' => 'Bebidas']) }}"
-                                class="btn btn-primary mx-3">Bebidas</a>
-                            <a href="{{ url('/produtos/listar', ['categoria' => 'Sobremesas']) }}"
-                                class="btn btn-primary mx-3">Sobremesas</a>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Adicionar</button>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- Mostrar os produtos disponíveis-->
-                        @if (session('produtosPorCategoria'))
-                            @foreach (session('produtosPorCategoria') as $produto)
-                                <div class="col-lg-4 col-md-4 col-sm-6 p-2" style="margin-bottom:2%">
-                                    <div class="card text-center">
-                                        <div class="card-body">
-                                            <p>{{ $produto->nome }}</p>
-                                            <div class="divBreveDescricaoLerMais">
-                                                <div class="divBreveDescricao">
-                                                    <span class="breve-descricao">{{ $produto->descricao }}</span>
-                                                </div>
-                                                <div class="divLerMais">
-                                                    <button class="btn btn-link btn-sm link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#modalDescricao{{ $produto->id }}">
-                                                        Ler Mais
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="divValor">
-                                                <span><strong>Valor unitário: R${{ $produto->preco }}</strong></span>
-                                            </div>
-                                            <div class="divBotoesCard mt-2">
-                                                <a href="#"
-                                                    class="btn btn-primary botaoAdicionar me-2 d-flex align-items-center justify-content-center textoBotoesCard"
-                                                    id="botao{{ $produto->id }}"
-                                                    onclick="mudarCorBotao(this)">Adicionar produto</a>
-                                                <a href="#" class="btn btn-danger textoBotoesCard"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#modalApagarProduto{{ $produto->id }}">Apagar
-                                                    produto da categoria</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Modal de apagar produto -->
-                                <div class="modal fade" id="modalApagarProduto{{ $produto->id }}" tabindex="-1"
-                                    aria-labelledby="modalApagarLabel{{ $produto->id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Apagar produto do
-                                                    catálogo</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <!-- Como esse modal é para ser ativado a partir de o id de cada mesa colocamos o id no target e no modal-->
-                                            <form action="/produtos/apagar/{{ $produto->id }}" method="post">
-                                                {{ csrf_field() }}
-                                                <div class="modal-body">
-                                                    <span>Você tem certeza que deseja apagar o produto:
-                                                        {{ $produto->nome }}?</span>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-danger">Sim</button>
-                                                    <button type="button" class="btn btn-primary"
-                                                        data-bs-dismiss="modal" aria-label="Close">Não</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!-- Modal de adicionar produto no catálogo de produtos-->
-            <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
-                aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
-                                catálogo</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-
-                        <form action="/produtos/adicionar" method="post">
-                            {{ csrf_field() }}
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="nome" class="form-label">Insira o nome:</label>
-                                    <input type="text" class="form-control" id="nome" name="nome"
-                                        required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="descricao" class="form-label">Insira a
-                                        descrição:</label>
-                                    <textarea class="form-control" id="descricao" name="descricao" rows="5"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="categoria" class="form-label">Selecione a Categoria:</label>
-                                    <select class="form-select" id="categoria" name="categoria" required>
-                                        <option value="AlmocoOuQuentinha">Almoço/Quentinha</option>
-                                        <option value="CafeDaManha">Café da manhã</option>
-                                        <option value="Bebidas">Bebidas</option>
-                                        <option value="Sobremesas">Sobremesas</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="valor" class="form-label">Insira o valor unitário:</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">R$</span>
-                                        <input type="number" step="0.01" class="form-control" id="preco"
-                                            name="preco" required>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Adicionar</button>
-                            </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
         @endif
     </div>
 
