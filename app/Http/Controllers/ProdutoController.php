@@ -35,6 +35,12 @@ class ProdutoController extends Controller
         //Rediriciona para a página anterior (no caso, página atual) após a operação ser concluída com sucesso.
 
     }
+
+    public function apagar($id)
+    {
+        Produto::findOrFail($id)->excluirProduto();
+        return back()->with('apagado', 'Produto apagado com sucesso!');;
+    }
     
     public function listarPorCategoria($categoria)
     {

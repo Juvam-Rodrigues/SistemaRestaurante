@@ -10,4 +10,8 @@ class Produto extends Model
     use HasFactory;
     protected $fillable = ['nome', 'descricao', 'preco', 'categoria'];
 
+    public function excluirProduto()
+    {
+        $this->delete();
+    }
 }

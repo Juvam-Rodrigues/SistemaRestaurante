@@ -38,6 +38,11 @@
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+    @elseif(session('apagado'))
+        <div class="alert alert-success">
+            {{ session('apagado') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
 
     <div class="container">
@@ -98,15 +103,20 @@
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <p>{{ $produto->nome }}</p>
-                                            <span class="breve-descricao">{{ $produto->descricao }}</span>
-                                            <div class="divLerMais">
-                                                <button class="btn btn-link btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#modalDescricao{{ $produto->id }}">
-                                                    Ler Mais
-                                                </button>
+                                            <div class="divBreveDescricaoLerMais">
+                                                <div class="divBreveDescricao">
+                                                    <span class="breve-descricao">{{ $produto->descricao }}</span>
+                                                </div>
+                                                <div class="divLerMais">
+                                                    <button class="btn btn-link btn-sm link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalDescricao{{ $produto->id }}">
+                                                        Ler Mais
+                                                    </button>
+                                                </div>
                                             </div>
                                             <div class="divValor">
-                                                <span>Valor unitário: R${{ $produto->preco }}</span>
+                                                <span><strong>Valor unitário: R${{ $produto->preco }}</strong></span>
                                             </div>
                                             <div class="divBotoesCard mt-2">
                                                 <a href="#"

@@ -1,47 +1,78 @@
-#divDescricaoComanda{
-    border-right: solid black 1px ;
+#divDescricaoComanda {
+    border-right: solid black 1px;
     padding: 2%;
 }
 
-#divProdutosComanda>.row{
+#divProdutosComanda > .row {
     padding: 1%;
 }
 
 .divSuperior {
     display: flex;
-    justify-content: space-between; /*Aproveita o máximo espaço da div, separando seus filhos para seus extremos*/
+    justify-content: space-between;
     border-bottom: none;
 }
 
-.container{
+.container {
     margin-top: 2%;
     border-radius: 5px;
     border: 1px solid black;
 }
 
-/*Produtos */
-.divTextoProduto{
+/* Produtos */
+.divTextoProduto {
     display: flex;
     align-items: center;
     margin-left: 2%;
 }
-.textoProduto{
+
+.textoProduto {
     margin-left: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
 }
-.textoBotoesCard, .breve-descricao{
-    font-size:1.1vw;
+
+.textoBotoesCard,
+.breve-descricao {
+    font-size: 1.1vw;
 }
 
-.breve-descricao {
+.divBreveDescricaoLerMais {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(233, 233, 233);
+    border-radius: 8px;
+}
+
+.divBreveDescricao {
+    width: 12rem;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Ajuste o número de linhas conforme necessário */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    font-size: 1.2vw;
-    padding: 1.2%;
-    background-color: rgb(233, 233, 233);
+}
+
+.divLerMais {
     width: 12rem;
-    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.divValor {
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding: 2%;
+    background-color: rgb(233, 233, 233);
+    color: black;
+    border-radius: 4px;
+}
+
+.divValor:hover {
+    background-color: rgb(5, 87, 5);
+    color: white;
+    border-radius: 4px;
 }
