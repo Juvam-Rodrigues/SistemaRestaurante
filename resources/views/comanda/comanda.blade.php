@@ -36,6 +36,7 @@
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
@@ -90,14 +91,67 @@
                     </div>
 
                     <div class="row">
-                        <div class="divProdutos col-12">
-                            <!-- Mostrar os produtos disponíveis-->
-                            @if (session('produtosPorCategoria'))
-                                @foreach (session('produtosPorCategoria') as $produto)
-                                    <div class="btn btn-primary">{{ $produto->nome }}</div>
-                                @endforeach
-                            @endif
-                        </div>
+                        <!-- Mostrar os produtos disponíveis-->
+                        @if (session('produtosPorCategoria'))
+                            @foreach (session('produtosPorCategoria') as $produto)
+                                <div class="col-lg-4 col-md-4 col-sm-6 p-2" style="margin-bottom:2%">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <p>{{ $produto->nome }}</p>
+                                            <span class="breve-descricao">{{ $produto->descricao }}</span>
+                                            <div class="divLerMais">
+                                                <button class="btn btn-link btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#modalDescricao{{ $produto->id }}">
+                                                    Ler Mais
+                                                </button>
+                                            </div>
+                                            <div class="divValor">
+                                                <span>Valor unitário: R${{ $produto->preco }}</span>
+                                            </div>
+                                            <div class="divBotoesCard mt-2">
+                                                <a href="#"
+                                                    class="btn btn-primary botaoAdicionar me-2 d-flex align-items-center justify-content-center textoBotoesCard"
+                                                    id="botao{{ $produto->id }}"
+                                                    onclick="mudarCorBotao(this)">Adicionar produto</a>
+                                                <a href="#" class="btn btn-danger textoBotoesCard"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modalApagarProduto{{ $produto->id }}">Apagar
+                                                    produto da categoria</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Modal de apagar produto -->
+                                <div class="modal fade" id="modalApagarProduto{{ $produto->id }}" tabindex="-1"
+                                    aria-labelledby="modalApagarLabel{{ $produto->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Apagar produto do
+                                                    catálogo</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <!-- Como esse modal é para ser ativado a partir de o id de cada mesa colocamos o id no target e no modal-->
+                                            <form action="/produtos/apagar/{{ $produto->id }}" method="post">
+                                                {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <span>Você tem certeza que deseja apagar o produto:
+                                                        {{ $produto->nome }}?</span>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger">Sim</button>
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-dismiss="modal" aria-label="Close">Não</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
@@ -121,7 +175,8 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="nome" class="form-label">Insira o nome:</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" required>
+                                    <input type="text" class="form-control" id="nome" name="nome"
+                                        required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="descricao" class="form-label">Insira a

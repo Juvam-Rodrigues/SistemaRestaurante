@@ -128,8 +128,8 @@ header {
     background-color: rgb(233, 233, 233);
     width: 10rem;
     border-radius: 12px;
-
 }
+
 .card-body{
     display: flex;
     align-items: center;
