@@ -14,7 +14,7 @@
 }
 
 .container {
-    margin-top: 2%;
+    margin-top: 3%;
     border-radius: 5px;
     border: 1px solid black;
 }
@@ -49,6 +49,8 @@
 
 .divBreveDescricao {
     width: 12rem;
+    padding-left: 5%;
+    padding-right: 5%;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;

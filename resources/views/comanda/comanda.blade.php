@@ -64,8 +64,8 @@
                                 @endif
                             </div>
                         </div>
-
                     </div>
+
                     <div id="divProdutosComanda" class="col-8">
                         <div class="row border-bottom border-dark">
                             <div class="divSuperior col-12">
@@ -81,7 +81,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row border-bottom border-dark p-3">
                             <div class="divConteudoSecoes col-12">
                                 <!-- Mostrar as opções de categoria-->
@@ -112,7 +111,7 @@
                                                         <button
                                                             class="btn btn-link btn-sm link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                                                             data-bs-toggle="modal"
-                                                            data-bs-target="#modalDescricao{{ $produto->id }}">
+                                                            data-bs-target="#modalDescricaoProduto{{ $produto->id }}">
                                                             Ler Mais
                                                         </button>
                                                     </div>
@@ -148,12 +147,12 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <!-- Como esse modal é para ser ativado a partir de o id de cada mesa colocamos o id no target e no modal-->
+                                                <!-- Como esse modal é para ser ativado a partir de o id de cada produto colocamos o id no target e no modal-->
                                                 <form action="/produtos/apagar/{{ $produto->id }}" method="post">
                                                     {{ csrf_field() }}
                                                     <div class="modal-body">
                                                         <span>Você tem certeza que deseja apagar o produto:
-                                                            {{ $produto->nome }}?</span>
+                                                            <strong>{{ $produto->nome }}</strong>?</span>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-danger">Sim</button>
@@ -164,67 +163,96 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Modal de descrição produto -->
+                                    <div class="modal fade" id="modalDescricaoProduto{{ $produto->id }}"
+                                        tabindex="-1"
+                                        aria-labelledby="modalDescricaoProdutoLabel{{ $produto->id }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Descrição do
+                                                        produto: <strong>{{ $produto->nome }}</strong></h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Adicionamos uma alturma maxima a esse corpo do modal e,
+                                                        caso passe fazemos uma barra de rolagem com esse overflow-y -->
+                                                    <div class="d-flex justify-content-start"
+                                                        style="max-height: 300px; overflow-y: auto;">
+                                                        <p
+                                                            style="white-space: pre-line; word-wrap: break-word; text-align: justify;">
+                                                            {{ wordwrap($produto->descricao, 50, "\n", true) }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <span>O valor unitário do produto é: R$
+                                                        <strong>{{ $produto->preco }}</strong></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             @endif
                         </div>
                     </div>
-
                 </div>
-        </div>
 
-
-
-        <!-- Modal de adicionar produto no catálogo de produtos-->
-        <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
-            aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
-                            catálogo</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-
-                    <form action="/produtos/adicionar" method="post">
-                        {{ csrf_field() }}
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Insira o nome:</label>
-                                <input type="text" class="form-control" id="nome" name="nome" required>
+                <!-- Modal de adicionar produto no catálogo de produtos-->
+                <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
+                    aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
+                                    catálogo</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
-                            <div class="mb-3">
-                                <label for="descricao" class="form-label">Insira a
-                                    descrição:</label>
-                                <textarea class="form-control" id="descricao" name="descricao" rows="5"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="categoria" class="form-label">Selecione a Categoria:</label>
-                                <select class="form-select" id="categoria" name="categoria" required>
-                                    <option value="AlmocoOuQuentinha">Almoço/Quentinha</option>
-                                    <option value="CafeDaManha">Café da manhã</option>
-                                    <option value="Bebidas">Bebidas</option>
-                                    <option value="Sobremesas">Sobremesas</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="valor" class="form-label">Insira o valor unitário:</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">R$</span>
-                                    <input type="number" step="0.01" class="form-control" id="preco"
-                                        name="preco" required>
+
+                            <form action="/produtos/adicionar" method="post">
+                                {{ csrf_field() }}
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label">Insira o nome:</label>
+                                        <input type="text" class="form-control" id="nome" name="nome"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descricao" class="form-label">Insira a
+                                            descrição:</label>
+                                        <textarea class="form-control" id="descricao" name="descricao" rows="5"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Selecione a Categoria:</label>
+                                        <select class="form-select" id="categoria" name="categoria" required>
+                                            <option value="AlmocoOuQuentinha">Almoço/Quentinha</option>
+                                            <option value="CafeDaManha">Café da manhã</option>
+                                            <option value="Bebidas">Bebidas</option>
+                                            <option value="Sobremesas">Sobremesas</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="valor" class="form-label">Insira o valor unitário:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">R$</span>
+                                            <input type="number" step="0.01" class="form-control" id="preco"
+                                                name="preco" required>
+                                        </div>
+                                    </div>
+
                                 </div>
-                            </div>
-
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Adicionar</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
-        @endif
     </div>
 
     <footer>
