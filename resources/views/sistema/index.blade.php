@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="divSuperior col-12">
                     <div class="divTextoMesasComandas">
-                        <p class="textoMesasComandas">Mesas</p>
+                        <p class="textoMesasComandas"><strong>Mesas</strong></p>
                     </div>
 
                     <div class="divBotaoModal">
@@ -128,7 +128,7 @@
             <div class="row">
                 <div class="divSuperior col-12">
                     <div class="divTextoMesasComandas">
-                        <p class="textoMesasComandas">Comandas</p>
+                        <p class="textoMesasComandas"><strong>Comandas</strong></p>
                     </div>
                     <div class="divBotaoModal">
                         <button class="btn btn-success botaoModal" data-bs-toggle="modal"

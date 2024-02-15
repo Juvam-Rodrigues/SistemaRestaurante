@@ -49,7 +49,17 @@
         <div class="container col-11">
             @if (isset($comanda) && isset($mesa))
                 <div class="row">
-                    <div id="divDescricaoComanda" class="col-4">
+                    <div class="divDescricaoComanda col-4 border-end border-dark">
+
+                        <div class="row mb-3 border-bottom border-dark">
+                            <div class="col-12 d-flex justify-content-start p-2">
+                                <img src="{{ asset('img/volte.png') }}" alt="seta de voltar" width="20px"
+                                    height="20px">
+                                <a href="/sistema"
+                                    class="ms-3 link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Voltar</a>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-6">
                                 <p><strong>Comanda de:</strong> {{ $comanda->nome }}</p>
@@ -68,12 +78,14 @@
 
                     <div id="divProdutosComanda" class="col-8">
                         <div class="row border-bottom border-dark">
-                            <div class="divSuperior col-12">
+                            <div class="divSuperior col-12 d-flex align-items-center">
                                 <div class="divTextoProduto">
-                                    <span class="textoProduto">Produtos</span>
-                                    <span class="textoProduto">disponíveis</span>
+                                    <strong>
+                                        <p class="textoProduto mb-0">Produtos disponíveis:</p>
+                                    </strong>
                                 </div>
-                                <div class="divBotaoModal">
+                                <div class="divBotaoModal ms-auto">
+                                    <!-- ms-auto para empurrar o botão para a margem direita -->
                                     <button class="btn btn-success botaoModal" data-bs-toggle="modal"
                                         data-bs-target="#modalAdicionarProduto">
                                         Adicionar produto no catálogo
@@ -136,8 +148,9 @@
 
 
                                     <!-- Modal de apagar produto -->
-                                    <div class="modal fade" id="modalApagarProduto{{ $produto->id }}" tabindex="-1"
-                                        aria-labelledby="modalApagarLabel{{ $produto->id }}" aria-hidden="true">
+                                    <div class="modal fade" id="modalApagarProduto{{ $produto->id }}"
+                                        tabindex="-1" aria-labelledby="modalApagarLabel{{ $produto->id }}"
+                                        aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -197,6 +210,19 @@
                                 @endforeach
                             @endif
                         </div>
+
+
+                        <!-- Produtos que foram pedidos -->
+                        <div class="row border-top border-dark">
+                            <div class="divSuperior col-12 d-flex justify-content-center">
+                                <div class="divTextoPedido">
+                                    <!-- Tem que dar esse margin bottom pois o <p> tem uma margim bottom padrão-->
+                                    <strong>
+                                        <p class="textoPedido mb-0">Produtos pedidos:</p>
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -255,18 +281,17 @@
         </div>
     </div>
 
-    <footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+
+    <footer class="site-footer">
         <div class="creditos">
             <p>Todos direitos reservado a <br>
                 <strong>Juvam Rodrigues do Nascimento Neto.</strong>
             </p>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-
 </body>
 
 </html>

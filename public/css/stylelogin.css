@@ -10,6 +10,12 @@
     text-align: center;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o conteúdo ocupe pelo menos a altura total da viewport */
+}
+
 /* Elementos do header*/
 
 header {
@@ -57,12 +63,13 @@ header {
 /* Elementos do container*/
 #container {
     margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
     justify-content: center;
     display: flex;
     border: 1.5px solid black;
     border-radius: 5px;
-    margin-left: 10%;
-    margin-right: 10%;
 }
 
 #divImagem-login {
@@ -134,6 +141,6 @@ header {
 footer {
     background-color: rgb(233, 233, 233);
     padding: 2%;
-    margin-top: 5%;
+    margin-top: auto;
     border-top: 1.5px solid black;
 }
