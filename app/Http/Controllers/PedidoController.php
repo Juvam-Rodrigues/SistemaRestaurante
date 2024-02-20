@@ -43,10 +43,9 @@ class PedidoController extends Controller
             ->update(['valor_acumulado' => \DB::raw('valor_acumulado + ' . $valor_total_pedido)]);
 
         // Redirecionamento ou resposta adequada
-        $listaPedidos = Pedido::where('comanda_id', $comanda_id); //Pega todos os pedidos da tabela pedidos conforme o id de comanda
+        $listaPedidos = Pedido::where('comanda_id', $comanda_id)->with('produto')->get();
 
-        return redirect()->back()->with(compact('pedido','listaPedidos'));
-        
+        return redirect()->back()->with('listaPedidos', $listaPedidos);
     }
     
 

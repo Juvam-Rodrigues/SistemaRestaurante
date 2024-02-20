@@ -225,8 +225,8 @@
                             </div>
                         </div>
                         <div class="row border-top border-dark">
-                            @if ($listaPedidos)
-                                @foreach (session('pedidos') as $pedido)
+                            @if (session('listaPedidos'))
+                                @foreach (session('listaPedidos') as $pedido)
                                     <div class="col-lg-4 col-md-4 col-sm-6 p-2" style="margin-bottom:2%">
                                         <div class="card text-center">
                                             <div class="card-body">
@@ -235,17 +235,13 @@
                                                     <span><strong>Valor total para o produto:
                                                             R${{ $pedido->valor_acumulado }}</strong></span>
                                                 </div>
-                                                <div class="divBotoesCard mt-3 d-flex justify-content-between"
-                                                    style="width: 5rem">
-                                                    <a href="" class="btn btn-success"><img
-                                                            src="{{ asset('img/adicionar.png') }}" alt=""
+                                                <div class="divBotoesCard mt-3 d-flex justify-content-between" style="width: 5rem">
+                                                    <a href="" class="btn btn-success"><img src="{{ asset('img/adicionar.png') }}" alt=""
                                                             width="25px" height="25px"></a>
-                                                    <a href="" class="btn btn-danger"><img
-                                                            src="{{ asset('img/excluir.png') }}" alt=""
+                                                    <a href="" class="btn btn-danger"><img src="{{ asset('img/excluir.png') }}" alt=""
                                                             width="25px" height="25px"></a>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 @endforeach
