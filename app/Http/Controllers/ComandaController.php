@@ -33,14 +33,17 @@ class ComandaController extends Controller
     }
     public function acessar($id) {
         $comanda = Comanda::find($id);
-        $mesa = $comanda->mesa;
-        $produtos = Produto::all()->groupBy('categoria');// Obtém todos os produtos disponíveis, agrupando por categoria.
-
-
-        if ($comanda != null)
-        {
-            return view("comanda/comanda", compact('comanda', 'mesa', 'produtos'));
+    
+        if ($comanda != null) {
+            $mesa = $comanda->mesa;
+            $produtos = Produto::all()->groupBy('categoria');
+    
+            // Adicione a lógica para obter os pedidos relacionados à comanda
+            $pedidos = $comanda->pedidos;
+    
+            return view("comanda/comanda", compact('comanda', 'mesa', 'produtos', 'pedidos'));
         }
+    
         return redirect('/sistema');
     }
 

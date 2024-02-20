@@ -133,7 +133,7 @@
                                                             R${{ $produto->preco }}</strong></span>
                                                 </div>
                                                 <div class="divBotoesCard mt-2">
-                                                    <a href="#"
+                                                    <a href="/pedidos/adicionar/produto/{{ $produto->id }}/{{ $comanda->id }}"
                                                         class="btn btn-primary botaoAdicionar me-2 d-flex align-items-center justify-content-center textoBotoesCard"
                                                         id="botao{{ $produto->id }}"
                                                         onclick="mudarCorBotao(this)">Adicionar produto</a>
@@ -221,64 +221,92 @@
                                         <p class="textoPedido mb-0">Produtos pedidos:</p>
                                     </strong>
                                 </div>
+
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="row border-top border-dark">
+                            @if ($listaPedidos)
+                                @foreach (session('pedidos') as $pedido)
+                                    <div class="col-lg-4 col-md-4 col-sm-6 p-2" style="margin-bottom:2%">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <p>{{ $pedido->produto->nome }}</p>
+                                                <div class="divValorAcumulado">
+                                                    <span><strong>Valor total para o produto:
+                                                            R${{ $pedido->valor_acumulado }}</strong></span>
+                                                </div>
+                                                <div class="divBotoesCard mt-3 d-flex justify-content-between"
+                                                    style="width: 5rem">
+                                                    <a href="" class="btn btn-success"><img
+                                                            src="{{ asset('img/adicionar.png') }}" alt=""
+                                                            width="25px" height="25px"></a>
+                                                    <a href="" class="btn btn-danger"><img
+                                                            src="{{ asset('img/excluir.png') }}" alt=""
+                                                            width="25px" height="25px"></a>
+                                                </div>
+                                            </div>
 
-                <!-- Modal de adicionar produto no catálogo de produtos-->
-                <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
-                    aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
-                                    catálogo</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-
-                            <form action="/produtos/adicionar" method="post">
-                                {{ csrf_field() }}
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="nome" class="form-label">Insira o nome:</label>
-                                        <input type="text" class="form-control" id="nome" name="nome"
-                                            required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="descricao" class="form-label">Insira a
-                                            descrição:</label>
-                                        <textarea class="form-control" id="descricao" name="descricao" rows="5"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Selecione a Categoria:</label>
-                                        <select class="form-select" id="categoria" name="categoria" required>
-                                            <option value="AlmocoOuQuentinha">Almoço/Quentinha</option>
-                                            <option value="CafeDaManha">Café da manhã</option>
-                                            <option value="Bebidas">Bebidas</option>
-                                            <option value="Sobremesas">Sobremesas</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="valor" class="form-label">Insira o valor unitário:</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">R$</span>
-                                            <input type="number" step="0.01" class="form-control" id="preco"
-                                                name="preco" required>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Adicionar</button>
-                                </div>
-                            </form>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
-            @endif
         </div>
+
+        <!-- Modal de adicionar produto no catálogo de produtos-->
+        <div class="modal fade" id="modalAdicionarProduto" tabindex="-1"
+            aria-labelledby="modalAdicionarProdutoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar produto no
+                            catálogo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <form action="/produtos/adicionar" method="post">
+                        {{ csrf_field() }}
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Insira o nome:</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descricao" class="form-label">Insira a
+                                    descrição:</label>
+                                <textarea class="form-control" id="descricao" name="descricao" rows="5"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="categoria" class="form-label">Selecione a Categoria:</label>
+                                <select class="form-select" id="categoria" name="categoria" required>
+                                    <option value="AlmocoOuQuentinha">Almoço/Quentinha</option>
+                                    <option value="CafeDaManha">Café da manhã</option>
+                                    <option value="Bebidas">Bebidas</option>
+                                    <option value="Sobremesas">Sobremesas</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="valor" class="form-label">Insira o valor unitário:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">R$</span>
+                                    <input type="number" step="0.01" class="form-control" id="preco"
+                                        name="preco" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Adicionar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endif
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

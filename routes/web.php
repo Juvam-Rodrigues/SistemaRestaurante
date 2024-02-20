@@ -5,6 +5,8 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\SistemaController;
+use App\Http\Controllers\PedidoController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,6 +42,11 @@ Route::get('/comandas/acessar/{id}', [ComandaController::class, 'acessar']);
 Route::post('/produtos/adicionar', [ProdutoController::class, 'criar']);
 Route::post('/produtos/apagar/{id}', [ProdutoController::class, 'apagar']);
 Route::get('/produtos/listar/{categoria}', [ProdutoController::class, 'listarPorCategoria']);
+
+//Pedidos
+Route::get('/pedidos/adicionar/produto/{produto_id}/{comanda_id}', [PedidoController::class, 'adicionar']);
+Route::get('/pedidos/acessar/', [PedidoController::class, 'acessar']);
+
 
 
 

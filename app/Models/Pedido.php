@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pedido extends Model
 {
     use HasFactory;
-    protected $fillable = ['comanda_id', 'produto_id', 'quantidade', 'valor_unitario'];
+    protected $fillable = ['comanda_id', 'produto_id', 'quantidade', 'valor_acumulado'];
 
 
     //Relacionamento
@@ -19,7 +19,7 @@ class Pedido extends Model
 
     public function produto()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsTo(Produto::class, 'produto_id');
     }
 
 }
