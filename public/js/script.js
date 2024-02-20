@@ -37,15 +37,17 @@ function mudarCorBotao(botao) {
 }
 
 //Script de mostrar senha no login
-document.getElementById('olho').addEventListener('mousedown', function() {
-    document.getElementById('senha').type = 'text';
-  });
-  
-  document.getElementById('olho').addEventListener('mouseup', function() {
-    document.getElementById('senha').type = 'password';
-  });
-  
-  // Para que o password não fique exposto apos mover a imagem.
-  document.getElementById('olho').addEventListener('mousemove', function() {
-    document.getElementById('senha').type = 'password';
-  });
+let clicou = false;
+document.getElementById('olho').onmousedown = function() {
+    if(!clicou){
+        document.getElementById('senha').type = 'text';
+        clicou = true;
+    }
+    else{
+        document.getElementById('senha').type = 'password';
+        clicou = false;
+
+    }
+    
+  };
+   
