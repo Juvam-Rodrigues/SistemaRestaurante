@@ -33,17 +33,7 @@
             </div>
         </div>
     </header>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @elseif(session('apagado'))
-        <div class="alert alert-success">
-            {{ session('apagado') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+    @include('msg/flash-msg')
 
     <div class="row">
         <div class="container col-11">
@@ -96,13 +86,13 @@
                         <div class="row border-bottom border-dark p-3">
                             <div class="divConteudoSecoes col-12">
                                 <!-- Mostrar as opções de categoria-->
-                                <a href="{{ url('/produtos/listar', ['categoria' => 'AlmocoOuQuentinha']) }}"
+                                <a href="/produtos/listar/{{$comanda->id}}/{{$categoria = 'AlmocoOuQuentinha'}}"
                                     class="btn btn-primary mx-3">Almoço/Quentinha</a>
-                                <a href="{{ url('/produtos/listar', ['categoria' => 'CafeDaManha']) }}"
+                                <a href="/produtos/listar/{{$comanda->id}}/{{$categoria = 'CafeDaManha'}}"
                                     class="btn btn-primary mx-3">Café da manhã</a>
-                                <a href="{{ url('/produtos/listar', ['categoria' => 'Bebidas']) }}"
+                                <a href="/produtos/listar/{{$comanda->id}}/{{$categoria = 'Bebidas'}}"
                                     class="btn btn-primary mx-3">Bebidas</a>
-                                <a href="{{ url('/produtos/listar', ['categoria' => 'Sobremesas']) }}"
+                                <a href="/produtos/listar/{{$comanda->id}}/{{$categoria = 'Sobremesas'}}"
                                     class="btn btn-primary mx-3">Sobremesas</a>
                             </div>
                         </div>

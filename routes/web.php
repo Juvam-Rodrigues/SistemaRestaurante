@@ -41,7 +41,7 @@ Route::get('/comandas/acessar/{id}', [ComandaController::class, 'acessar']);
 //Produtos
 Route::post('/produtos/adicionar', [ProdutoController::class, 'criar']);
 Route::post('/produtos/apagar/{id}', [ProdutoController::class, 'apagar']);
-Route::get('/produtos/listar/{categoria}', [ProdutoController::class, 'listarPorCategoria']);
+Route::get('/produtos/listar/{comanda_id}/{categoria}', [ProdutoController::class, 'listarPorCategoria']);
 
 //Pedidos
 Route::get('/pedidos/adicionar/produto/{produto_id}/{comanda_id}', [PedidoController::class, 'adicionar']);

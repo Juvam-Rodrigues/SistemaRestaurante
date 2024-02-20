@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\Pedido;
+
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,26 +34,36 @@ class ProdutoController extends Controller
 
 
         // Redirecionamento ou resposta adequada
-        return back()->with('success', 'Produto adicionado com sucesso!');
+        session()->flash('msg', ['tipo' => 'sucesso', 'texto' => 'Produto adicionado com sucesso!']);
+        return back();
         //Rediriciona para a página anterior (no caso, página atual) após a operação ser concluída com sucesso.
 
     }
 
     public function apagar($id)
     {
-        Produto::findOrFail($id)->excluirProduto();
-        return back()->with('apagado', 'Produto apagado com sucesso!');;
+        try{
+            Produto::findOrFail($id)->excluirProduto();
+            session()->flash('msg', ['tipo' => 'sucesso', 'texto' => 'Produto apagado com sucesso!']);
+            return back();
+        }
+        catch(Exception $excecao){
+            session()->flash('msg', ['tipo' => 'erro', 'texto' => 'Produto não apagado, pois ele deve ser apagado nos pedidos.']);
+            return back();
+        }
     }
     
-    public function listarPorCategoria($categoria)
+    public function listarPorCategoria($comanda_id, $categoria)
     {
         // Buscar produtos comuns por categoria no banco de dados
         $produtosPorCategoria = DB::table('produtos')
             ->where('categoria', $categoria)
             ->get();
 
+        $listaPedidos = Pedido::where('comanda_id', $comanda_id)->with('produto')->get();
+
         // Passar os produtos para a view
-        return back()->with('produtosPorCategoria', $produtosPorCategoria);    
+        return back()->with('produtosPorCategoria', $produtosPorCategoria)->with('listaPedidos', $listaPedidos);    
     }
 
 }
