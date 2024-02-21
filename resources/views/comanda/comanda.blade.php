@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="divDescricaoComanda col-4 border-end border-dark">
 
-                        <div class="row mb-3 border-bottom border-dark">
+                        <div class="row border-bottom border-dark">
                             <div class="col-12 d-flex justify-content-start p-2">
                                 <img src="{{ asset('img/volte.png') }}" alt="seta de voltar" width="20px"
                                     height="20px">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-5 mb-5">
                             <div class="col-6">
                                 <p><strong>Comanda de:</strong> {{ $comanda->nome }}</p>
                                 <p><strong>Mesa:</strong> {{ $mesa->numero }}</p>
@@ -58,12 +58,20 @@
                             <div class="col-6">
                                 <p><strong>Valor: R${{ $comanda->valor }}.</strong></p>
                                 @if ($comanda->status === 0)
-                                    <p><strong>Status:</strong> Não pago.</p>
+                                    <p style="color: red"><strong>Status:</strong> Não pago.</p>
                                 @elseif($comanda->status === 1)
-                                    <p><strong>Status:</strong> Pago.</p>
+                                    <p style="color: green"><strong>Status:</strong> Pago.</p>
                                 @endif
                             </div>
                         </div>
+
+                        <div class="row border-top border-dark">
+                            <div class="col-12 mt-3 mb-3">
+                                <button class="btn btn-success botaoModal" data-bs-toggle="modal"
+                                    data-bs-target="#modalPagarConta">Pagar</button>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div id="divProdutosComanda" class="col-8">
@@ -86,13 +94,13 @@
                         <div class="row border-bottom border-dark p-3">
                             <div class="divConteudoSecoes col-12">
                                 <!-- Mostrar as opções de categoria-->
-                                <a href="/produtos/listar/{{$comanda->id}}/{{$categoria = 'AlmocoOuQuentinha'}}"
+                                <a href="/produtos/listar/{{ $comanda->id }}/{{ $categoria = 'AlmocoOuQuentinha' }}"
                                     class="btn btn-primary mx-3">Almoço/Quentinha</a>
-                                <a href="/produtos/listar/{{$comanda->id}}/{{$categoria = 'CafeDaManha'}}"
+                                <a href="/produtos/listar/{{ $comanda->id }}/{{ $categoria = 'CafeDaManha' }}"
                                     class="btn btn-primary mx-3">Café da manhã</a>
-                                <a href="/produtos/listar/{{$comanda->id}}/{{$categoria = 'Bebidas'}}"
+                                <a href="/produtos/listar/{{ $comanda->id }}/{{ $categoria = 'Bebidas' }}"
                                     class="btn btn-primary mx-3">Bebidas</a>
-                                <a href="/produtos/listar/{{$comanda->id}}/{{$categoria = 'Sobremesas'}}"
+                                <a href="/produtos/listar/{{ $comanda->id }}/{{ $categoria = 'Sobremesas' }}"
                                     class="btn btn-primary mx-3">Sobremesas</a>
                             </div>
                         </div>
@@ -223,19 +231,26 @@
                                                 <p>{{ $pedido->produto->nome }}</p>
                                                 <div class="divValorUnitario mb-3">
                                                     <span><strong>Valor unitário do produto:
-                                                        R${{ $pedido->produto->preco }}</strong></span>
+                                                            R${{ $pedido->produto->preco }}</strong></span>
                                                 </div>
                                                 <div class="divValorAcumulado">
                                                     <span><strong>Valor total para o produto:
                                                             R${{ $pedido->valor_acumulado }}</strong></span>
                                                 </div>
-                                                <div class="divQuantidadeDoPedido mt-3 d-flex justify-content-center align-items-center">
-                                                    <span><strong>Quantidade: {{ $pedido->quantidade }}.</strong></span>
+                                                <div
+                                                    class="divQuantidadeDoPedido mt-3 d-flex justify-content-center align-items-center">
+                                                    <span><strong>Quantidade:
+                                                            {{ $pedido->quantidade }}.</strong></span>
                                                 </div>
-                                                <div class="divBotoesCard mt-3 d-flex justify-content-between" style="width: 5rem">
-                                                    <a href="/pedidos/adicionar/produto/{{ $pedido->produto->id }}/{{ $comanda->id }}/{{ $pedido->produto->categoria }}" class="btn btn-success"><img src="{{ asset('img/adicionar.png') }}" alt=""
+                                                <div class="divBotoesCard mt-3 d-flex justify-content-between"
+                                                    style="width: 5rem">
+                                                    <a href="/pedidos/adicionar/produto/{{ $pedido->produto->id }}/{{ $comanda->id }}/{{ $pedido->produto->categoria }}"
+                                                        class="btn btn-success"><img
+                                                            src="{{ asset('img/adicionar.png') }}" alt=""
                                                             width="25px" height="25px"></a>
-                                                    <a href="/pedidos/remover/produto/{{ $pedido->produto->id }}/{{ $comanda->id }}/{{ $pedido->produto->categoria }}" class="btn btn-danger"><img src="{{ asset('img/excluir.png') }}" alt=""
+                                                    <a href="/pedidos/remover/produto/{{ $pedido->produto->id }}/{{ $comanda->id }}/{{ $pedido->produto->categoria }}"
+                                                        class="btn btn-danger"><img
+                                                            src="{{ asset('img/excluir.png') }}" alt=""
                                                             width="25px" height="25px"></a>
                                                 </div>
                                             </div>
@@ -293,6 +308,52 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Adicionar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalPagarConta" tabindex="-1" aria-labelledby="modalPagarContaLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Pagar conta de {{ $comanda->nome }}
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <form action="/comanda/pagar" method="post">
+                        {{ csrf_field() }}
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <h4>Valor a ser pago: <span style="color: green;">R$ {{ $comanda->valor }}</span></h4>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="metodo_pagamento" class="form-label">Vai ser pago em:</label>
+                                <select class="form-select" id="metodo_pagamento" name="metodo_pagamento" required>
+                                    <option value="Dinheiro">Dinheiro</option>
+                                    <option value="Cartao">Cartão</option>
+                                    <option value="Pix">Pix</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <div class="divTextoPix d-flex flex-column align-items-center">
+                                    <p><strong>Escanei agora!</strong></p>
+                                    <img src="{{ asset('img/seta-para-baixo.png') }}" alt="" width="80px"
+                                    height="80px">
+                                </div>
+                                <div class="divImgQrCode">
+                                    <img src="{{ asset('img/qrCodePix.png') }}" alt="qrcodepix" width="220px"
+                                        height="220px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Pagar</button>
                         </div>
                     </form>
                 </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comanda extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome', 'status', 'valor', 'mesa_id'];
+    protected $fillable = ['nome', 'status', 'valor', 'mesa_id', 'tipo_pagamento'];
 
 
     public function excluirComanda()
