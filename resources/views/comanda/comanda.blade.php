@@ -123,7 +123,7 @@
                                                             R${{ $produto->preco }}</strong></span>
                                                 </div>
                                                 <div class="divBotoesCard mt-2">
-                                                    <a href="/pedidos/adicionar/produto/{{ $produto->id }}/{{ $comanda->id }}"
+                                                    <a href="/pedidos/adicionar/produto/{{ $produto->id }}/{{ $comanda->id }}/{{ $produto->categoria }}"
                                                         class="btn btn-primary botaoAdicionar me-2 d-flex align-items-center justify-content-center textoBotoesCard"
                                                         id="botao{{ $produto->id }}"
                                                         onclick="mudarCorBotao(this)">Adicionar produto</a>
@@ -221,14 +221,21 @@
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <p>{{ $pedido->produto->nome }}</p>
+                                                <div class="divValorUnitario mb-3">
+                                                    <span><strong>Valor unitário do produto:
+                                                        R${{ $pedido->produto->preco }}</strong></span>
+                                                </div>
                                                 <div class="divValorAcumulado">
                                                     <span><strong>Valor total para o produto:
                                                             R${{ $pedido->valor_acumulado }}</strong></span>
                                                 </div>
+                                                <div class="divQuantidadeDoPedido mt-3 d-flex justify-content-center align-items-center">
+                                                    <span><strong>Quantidade: {{ $pedido->quantidade }}.</strong></span>
+                                                </div>
                                                 <div class="divBotoesCard mt-3 d-flex justify-content-between" style="width: 5rem">
-                                                    <a href="" class="btn btn-success"><img src="{{ asset('img/adicionar.png') }}" alt=""
+                                                    <a href="/pedidos/adicionar/produto/{{ $pedido->produto->id }}/{{ $comanda->id }}/{{ $pedido->produto->categoria }}" class="btn btn-success"><img src="{{ asset('img/adicionar.png') }}" alt=""
                                                             width="25px" height="25px"></a>
-                                                    <a href="" class="btn btn-danger"><img src="{{ asset('img/excluir.png') }}" alt=""
+                                                    <a href="/pedidos/remover/produto/{{ $pedido->produto->id }}/{{ $comanda->id }}/{{ $pedido->produto->categoria }}" class="btn btn-danger"><img src="{{ asset('img/excluir.png') }}" alt=""
                                                             width="25px" height="25px"></a>
                                                 </div>
                                             </div>

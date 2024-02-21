@@ -17,6 +17,21 @@ class Comanda extends Model
         $this->pedidos()->delete();    // Remover pedidos associados, apagando.
         $this->delete();
     }
+
+    public function acumularValor($listaPedidos){
+        $this->valor = 0;
+        foreach($listaPedidos as $pedido){              
+            $this->valor+=$pedido->valor_acumulado;
+        }
+        $this->save();
+    }
+    public function diminuitValor($listaPedidos){
+        $this->valor = 0;
+        foreach($listaPedidos as $pedido){              
+            $this->valor-=$pedido->valor_acumulado;
+        }
+        $this->save();
+    }
     // Relacionamento muitas comandas para uma mesa
     public function mesa()
     {

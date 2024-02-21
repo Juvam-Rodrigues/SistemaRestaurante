@@ -11,6 +11,11 @@ class Pedido extends Model
     protected $fillable = ['comanda_id', 'produto_id', 'quantidade', 'valor_acumulado'];
 
 
+    public function excluirPedido(){
+        $this->comanda()->dissociate(); 
+        $this->produto()->dissociate(); 
+        $this->delete();
+    }
     //Relacionamento
     public function comanda()
     {

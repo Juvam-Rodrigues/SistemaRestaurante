@@ -44,8 +44,11 @@ Route::post('/produtos/apagar/{id}', [ProdutoController::class, 'apagar']);
 Route::get('/produtos/listar/{comanda_id}/{categoria}', [ProdutoController::class, 'listarPorCategoria']);
 
 //Pedidos
-Route::get('/pedidos/adicionar/produto/{produto_id}/{comanda_id}', [PedidoController::class, 'adicionar']);
+Route::get('/pedidos/adicionar/produto/{produto_id}/{comanda_id}/{produto_categoria}', [PedidoController::class, 'adicionar']);
+Route::get('/pedidos/remover/produto/{produto_id}/{comanda_id}/{produto_categoria}', [PedidoController::class, 'remover']);
+
 Route::get('/pedidos/acessar/', [PedidoController::class, 'acessar']);
+
 
 
 
