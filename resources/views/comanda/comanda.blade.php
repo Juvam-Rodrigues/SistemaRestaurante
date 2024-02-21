@@ -332,7 +332,7 @@
                                 <h4>Valor a ser pago: <span style="color: green;">R$ {{ $comanda->valor }}</span></h4>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <label for="metodo_pagamento" class="form-label">Vai ser pago em:</label>
                                 <select class="form-select" id="metodo_pagamento" name="metodo_pagamento" required>
                                     <option value="Dinheiro">Dinheiro</option>
@@ -340,7 +340,7 @@
                                     <option value="Pix">Pix</option>
                                 </select>
                             </div>
-                            <div class="mb-4">
+                            <div class="mb-1">
                                 <div class="divTextoPix d-flex flex-column align-items-center">
                                     <p><strong>Escanei agora!</strong></p>
                                     <img src="{{ asset('img/seta-para-baixo.png') }}" alt="" width="80px"
