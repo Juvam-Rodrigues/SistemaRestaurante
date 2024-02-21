@@ -14,6 +14,7 @@ class Comanda extends Model
     public function excluirComanda()
     {
         $this->mesa()->dissociate(); //Remove a mesa do usuário, a desassociando mesa de usuário.
+        $this->pedidos()->delete();    // Remover pedidos associados, apagando.
         $this->delete();
     }
     // Relacionamento muitas comandas para uma mesa
