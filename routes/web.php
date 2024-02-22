@@ -36,6 +36,7 @@ Route::get('/mesas/acessar/{id}', [MesaController::class, 'acessar']);
 //Comandas 
 Route::post('/comandas/adicionar', [ComandaController::class, 'criar']);
 Route::post('/comandas/apagar/{id}', [ComandaController::class, 'apagar']);
+Route::post('/comandas/pagar', [ComandaController::class, 'pagar']);
 Route::get('/comandas/acessar/{id}', [ComandaController::class, 'acessar']);
 
 //Produtos
@@ -46,8 +47,9 @@ Route::get('/produtos/listar/{comanda_id}/{categoria}', [ProdutoController::clas
 //Pedidos
 Route::get('/pedidos/adicionar/produto/{produto_id}/{comanda_id}/{produto_categoria}', [PedidoController::class, 'adicionar']);
 Route::get('/pedidos/remover/produto/{produto_id}/{comanda_id}/{produto_categoria}', [PedidoController::class, 'remover']);
-
 Route::get('/pedidos/acessar/', [PedidoController::class, 'acessar']);
+
+
 
 
 

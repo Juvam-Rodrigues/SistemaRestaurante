@@ -18,20 +18,30 @@ class Comanda extends Model
         $this->delete();
     }
 
-    public function acumularValor($listaPedidos){
+    //Alterando o valor da comanda
+    public function acumularValor($listaPedidos)
+    {
         $this->valor = 0;
-        foreach($listaPedidos as $pedido){              
-            $this->valor+=$pedido->valor_acumulado;
+        foreach ($listaPedidos as $pedido) {
+            $this->valor += $pedido->valor_acumulado;
         }
         $this->save();
     }
-    public function diminuitValor($listaPedidos){
-        $this->valor = 0;
-        foreach($listaPedidos as $pedido){              
-            $this->valor-=$pedido->valor_acumulado;
-        }
+
+    //Pagar
+    public function pagar($metodo_pagamento)
+    {
+        $this->tipo_pagamento = $metodo_pagamento;
+        $this->status = $this->status + 1;
         $this->save();
     }
+
+    public function estaPaga()
+    {
+        // Se o status for igual a 1, consideramos a comanda como paga.
+        return $this->status === 1;
+    }
+
     // Relacionamento muitas comandas para uma mesa
     public function mesa()
     {
