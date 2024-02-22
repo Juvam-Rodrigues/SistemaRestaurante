@@ -31,31 +31,38 @@ class ComandaController extends Controller
         Comanda::findOrFail($id)->excluirComanda();
         return redirect("/sistema");
     }
-    public function acessar($id) {
+    public function acessar($id)
+    {
         $comanda = Comanda::find($id);
-    
+
         if ($comanda != null) {
             $mesa = $comanda->mesa;
             $produtos = Produto::all()->groupBy('categoria');
-    
+
             // Adicione a lógica para obter os pedidos relacionados à comanda
             $pedidos = $comanda->pedidos;
-    
+
             return view("comanda/comanda", compact('comanda', 'mesa', 'produtos', 'pedidos'));
         }
-    
+
         return redirect('/sistema');
     }
-    public function pagamento ($comanda_id, $metodo_pagamento){
+    public function pagamento($comanda_id, $metodo_pagamento)
+    {
 
 
         $comanda = Comanda::findOrFail($comanda_id);
-        
-        if (!$comanda->estaPaga()) {
+
+        if (!$comanda->estaPaga() && $comanda->valor != 0) {
             $comanda->pagar($metodo_pagamento);
-            return redirect()->back()->with('mensagem', 'Pagamento processado com sucesso!');
+            session()->flash('msg', ['tipo' => 'sucesso', 'texto' => 'Comanda foi paga com sucesso!']);
+            return redirect()->back();
+        } else if (!$comanda->estaPaga() && $comanda->valor == 0) {
+            session()->flash('msg', ['tipo' => 'erro', 'texto' => 'Adicione produtos na comanda antes de pagá-la!']);
+            return redirect()->back();
         } else {
-            return redirect()->back()->with('mensagem', 'Esta comanda já foi paga anteriormente.');
+            session()->flash('msg', ['tipo' => 'erro', 'texto' => 'A comanda já foi paga!']);
+            return redirect()->back();
         }
 
     }

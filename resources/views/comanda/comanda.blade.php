@@ -50,7 +50,7 @@
                             </div>
                         </div>
 
-                        <div class="row mt-5 mb-5">
+                        <div class="row mt-5 mb-4">
                             <div class="col-6">
                                 <p><strong>Comanda de:</strong> {{ $comanda->nome }}</p>
                                 <p><strong>Mesa:</strong> {{ $mesa->numero }}</p>
@@ -58,9 +58,15 @@
                             <div class="col-6">
                                 <p><strong>Valor: R${{ $comanda->valor }}.</strong></p>
                                 @if ($comanda->status === 0)
-                                    <p style="color: red"><strong>Status:</strong> Não pago.</p>
+                                    <p style="color: red"><strong>Status: Não pago. </strong></p>
                                 @elseif($comanda->status === 1)
-                                    <p style="color: green"><strong>Status:</strong> Pago.</p>
+                                    @if ($comanda->tipo_pagamento === 'Dinheiro')
+                                        <p style="color: green"><strong>Status: Pago no dinheiro.</strong></p>
+                                    @elseif ($comanda->tipo_pagamento === 'Pix')
+                                        <p style="color: green"><strong>Status: Pago no pix.</strong></p>
+                                    @elseif ($comanda->tipo_pagamento === 'Cartao')
+                                        <p style="color: green"><strong>Status: Pago no cartão.</strong></p>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -329,16 +335,7 @@
                         <div class="mb-3">
                             <h4>Valor a ser pago: <span style="color: green;">R$ {{ $comanda->valor }}</span></h4>
                         </div>
-
-                        <input type="hidden" name="id" value="{{ $comanda->id }}">
-
-                        <div class="mb-5">
-                            <p>Vai ser pago em:</p>
-                            <a href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Dinheiro' }}">Dinheiro</a>
-                            <a href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Cartao' }}">Cartão</a>
-                            <a href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Pix' }}">Pix</a>
-                        </div>
-                        <div class="mb-1">
+                        <div class="mb-3">
                             <div class="divTextoPix d-flex flex-column align-items-center">
                                 <p><strong>Escanei agora!</strong></p>
                                 <img src="{{ asset('img/seta-para-baixo.png') }}" alt="" width="80px"
@@ -349,9 +346,17 @@
                                     height="220px">
                             </div>
                         </div>
+                        <div class="divTextoValorASerPago mb-0">
+                            <h5>Vai ser pago em:</h5>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Pagar</button>
+                        <a class="btn btn-success"
+                            href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Dinheiro' }}">Dinheiro</a>
+                        <a class="btn btn-success"
+                            href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Cartao' }}">Cartão</a>
+                        <a class="btn btn-success"
+                            href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Pix' }}">Pix</a>
                     </div>
                 </div>
             </div>

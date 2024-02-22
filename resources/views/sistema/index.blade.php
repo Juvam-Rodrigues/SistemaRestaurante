@@ -187,10 +187,17 @@
                                             @if ($comanda->status === 0)
                                                 <span class="mb-3 btn btn-warning">Status: Não pago</span>
                                             @elseif($comanda->status === 1)
-                                                <span class="mb-3 btn btn-info">Status: Pago</span>
+                                                @if ($comanda->tipo_pagamento === 'Dinheiro')
+                                                    <span class="mb-3 btn btn-success">Status: Pago no dinheiro.</span>
+                                                @elseif ($comanda->tipo_pagamento === 'Pix')
+                                                    <span class="mb-3 btn btn-success">Status: Pago no pix.</span>
+                                                @elseif ($comanda->tipo_pagamento === 'Cartao')
+                                                    <span class="mb-3 btn btn-success">Status: Pago no cartão.</span>
+                                                @endif
                                             @endif
                                             <div class="divBotoesCard">
-                                                <a href="/comandas/acessar/{{ $comanda->id }}" class="btn btn-primary botaoAcessar">Acessar
+                                                <a href="/comandas/acessar/{{ $comanda->id }}"
+                                                    class="btn btn-primary botaoAcessar">Acessar
                                                     comanda</a>
                                                 <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                                                     data-bs-target="#modalApagarComanda{{ $comanda->id }}">Apagar

@@ -87,3 +87,11 @@
     width: 12rem;
     height: 2rem;   
 }
+
+/*Textos de pago */
+.pago{
+    color: green;
+}
+.naoPago{
+    color: red;
+}
