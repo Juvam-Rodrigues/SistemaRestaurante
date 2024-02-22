@@ -325,39 +325,34 @@
                             aria-label="Close"></button>
                     </div>
 
-                    <form action="/comandas/pagar" method="post">
-                        {{ csrf_field() }}
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <h4>Valor a ser pago: <span style="color: green;">R$ {{ $comanda->valor }}</span></h4>
-                            </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <h4>Valor a ser pago: <span style="color: green;">R$ {{ $comanda->valor }}</span></h4>
+                        </div>
 
-                            <input type="hidden" name="id" value="{{ $comanda->id }}">
+                        <input type="hidden" name="id" value="{{ $comanda->id }}">
 
-                            <div class="mb-5">
-                                <label for="metodo_pagamento" class="form-label">Vai ser pago em:</label>
-                                <select class="form-select" id="metodo_pagamento" name="metodo_pagamento" required>
-                                    <option value="Dinheiro">Dinheiro</option>
-                                    <option value="Cartao">Cartão</option>
-                                    <option value="Pix">Pix</option>
-                                </select>
+                        <div class="mb-5">
+                            <p>Vai ser pago em:</p>
+                            <a href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Dinheiro' }}">Dinheiro</a>
+                            <a href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Cartao' }}">Cartão</a>
+                            <a href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Pix' }}">Pix</a>
+                        </div>
+                        <div class="mb-1">
+                            <div class="divTextoPix d-flex flex-column align-items-center">
+                                <p><strong>Escanei agora!</strong></p>
+                                <img src="{{ asset('img/seta-para-baixo.png') }}" alt="" width="80px"
+                                    height="80px">
                             </div>
-                            <div class="mb-1">
-                                <div class="divTextoPix d-flex flex-column align-items-center">
-                                    <p><strong>Escanei agora!</strong></p>
-                                    <img src="{{ asset('img/seta-para-baixo.png') }}" alt="" width="80px"
-                                        height="80px">
-                                </div>
-                                <div class="divImgQrCode">
-                                    <img src="{{ asset('img/qrCodePix.png') }}" alt="qrcodepix" width="220px"
-                                        height="220px">
-                                </div>
+                            <div class="divImgQrCode">
+                                <img src="{{ asset('img/qrCodePix.png') }}" alt="qrcodepix" width="220px"
+                                    height="220px">
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Pagar</button>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Pagar</button>
+                    </div>
                 </div>
             </div>
         </div>

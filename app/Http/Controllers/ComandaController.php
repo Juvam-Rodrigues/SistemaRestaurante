@@ -46,17 +46,13 @@ class ComandaController extends Controller
     
         return redirect('/sistema');
     }
-    public function pagar(Request $request){
-        
-        $request->validate([
-            'metodo_pagamento' => 'nullable|string',
-            'comanda_id' => 'numeric',
-        ]);
+    public function pagamento ($comanda_id, $metodo_pagamento){
 
-        $comanda = Comanda::findOrFail($request->input('comanda_id'));
+
+        $comanda = Comanda::findOrFail($comanda_id);
         
         if (!$comanda->estaPaga()) {
-            $comanda->pagar($request->input('metodo_pagamento'));
+            $comanda->pagar($metodo_pagamento);
             return redirect()->back()->with('mensagem', 'Pagamento processado com sucesso!');
         } else {
             return redirect()->back()->with('mensagem', 'Esta comanda já foi paga anteriormente.');
