@@ -47,14 +47,16 @@ class ComandaController extends Controller
 
         return redirect('/sistema');
     }
-    public function pagamento($comanda_id, $metodo_pagamento)
+    public function pagamento(Request $request)
     {
-
-
+        $comanda_id = $request->route('comanda_id');
+        $metodo_pagamento = $request->route('metodo_pagamento');
+        $desconto = $request->route('desconto');
+        
         $comanda = Comanda::findOrFail($comanda_id);
 
         if (!$comanda->estaPaga() && $comanda->valor != 0) {
-            $comanda->pagar($metodo_pagamento);
+            $comanda->pagar($metodo_pagamento, $desconto);
             session()->flash('msg', ['tipo' => 'sucesso', 'texto' => 'Comanda foi paga com sucesso!']);
             return redirect()->back();
         } else if (!$comanda->estaPaga() && $comanda->valor == 0) {

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/styledentrocomanda.css') }}">
 
     <script src="{{ asset('js/script.js') }}" defer></script>
+    <script src="{{ asset('js/scriptPagar.js') }}" defer></script>
 
     <title>Sistema</title>
 </head>
@@ -56,18 +57,24 @@
                                 <p><strong>Mesa:</strong> {{ $mesa->numero }}</p>
                             </div>
                             <div class="col-6">
-                                <p><strong>Valor: R${{ $comanda->valor }}.</strong></p>
-                                @if ($comanda->status === 0)
-                                    <p style="color: red"><strong>Status: Não pago. </strong></p>
-                                @elseif($comanda->status === 1)
-                                    @if ($comanda->tipo_pagamento === 'Dinheiro')
-                                        <p style="color: green"><strong>Status: Pago no dinheiro.</strong></p>
-                                    @elseif ($comanda->tipo_pagamento === 'Pix')
-                                        <p style="color: green"><strong>Status: Pago no pix.</strong></p>
-                                    @elseif ($comanda->tipo_pagamento === 'Cartao')
-                                        <p style="color: green"><strong>Status: Pago no cartão.</strong></p>
+                                <div>
+                                    <p><strong>Valor a pagar: R${{ $comanda->valor }}.</strong></p>
+                                    @if ($comanda->status === 0)
+                                        <p style="color: red"><strong>Status: Não pago. </strong></p>
+                                    @elseif($comanda->status === 1)
+                                        @if ($comanda->tipo_pagamento === 'Dinheiro')
+                                            <p style="color: green"><strong>Status: Pago no dinheiro.</strong></p>
+                                        @elseif ($comanda->tipo_pagamento === 'Pix')
+                                            <p style="color: green"><strong>Status: Pago no pix.</strong></p>
+                                        @elseif ($comanda->tipo_pagamento === 'Cartao')
+                                            <p style="color: green"><strong>Status: Pago no cartão.</strong></p>
+                                        @endif
                                     @endif
-                                @endif
+                                </div>
+                                <div>
+                                    <p><strong>Valor do desconto: R${{ $comanda->desconto }}.</strong></p>
+                                </div>
+
                             </div>
                         </div>
 
@@ -331,33 +338,44 @@
                             aria-label="Close"></button>
                     </div>
 
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <h4>Valor a ser pago: <span style="color: green;">R$ {{ $comanda->valor }}</span></h4>
-                        </div>
-                        <div class="mb-3">
-                            <div class="divTextoPix d-flex flex-column align-items-center">
-                                <p><strong>Escanei agora!</strong></p>
-                                <img src="{{ asset('img/seta-para-baixo.png') }}" alt="" width="80px"
-                                    height="80px">
+                    <form action="" method="GET">
+                        <input type="hidden" name="comanda_id" id="comanda_id" value="{{ $comanda->id }}">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <h4>Valor a ser pago: <span style="color: green;">R$ {{ $comanda->valor }}</span></h4>
                             </div>
-                            <div class="divImgQrCode">
-                                <img src="{{ asset('img/qrCodePix.png') }}" alt="qrcodepix" width="220px"
-                                    height="220px">
+                            <div class="mb-3">
+                                <label for="metodo_pagamento" class="form-label">Vai ser pago em:</label>
+                                <select class="form-select" id="metodo_pagamento" name="metodo_pagamento" required>
+                                    <option value="Dinheiro">Dinheiro</option>
+                                    <option value="Cartao">Cartão</option>
+                                    <option value="Pix">Pix</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <div class="divTextoPix d-flex flex-column align-items-center">
+                                    <p><strong>Escanei agora!</strong></p>
+                                    <img src="{{ asset('img/seta-para-baixo.png') }}" alt="" width="80px"
+                                        height="80px">
+                                </div>
+                                <div class="divImgQrCode">
+                                    <img src="{{ asset('img/qrCodePix.png') }}" alt="qrcodepix" width="220px"
+                                        height="220px">
+                                </div>
+                            </div>
+                            <div class="divDesconto mb-0">
+                                <label for="desconto" class="form-label">Insira o valor de desconto:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">R$</span>
+                                    <input type="number" step="0.01" class="form-control" id="desconto"
+                                        name="desconto" value="0">
+                                </div>
                             </div>
                         </div>
-                        <div class="divTextoValorASerPago mb-0">
-                            <h5>Vai ser pago em:</h5>
+                        <div class="modal-footer">
+                            <a href="#" onclick="processarPagamento()" class="btn btn-success">Pagar</a>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-success"
-                            href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Dinheiro' }}">Dinheiro</a>
-                        <a class="btn btn-success"
-                            href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Cartao' }}">Cartão</a>
-                        <a class="btn btn-success"
-                            href="/comandas/pagamento/{{ $comanda->id }}/{{ $metodo_pagamento = 'Pix' }}">Pix</a>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

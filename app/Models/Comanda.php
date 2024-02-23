@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comanda extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome', 'status', 'valor', 'mesa_id', 'tipo_pagamento'];
+    protected $fillable = ['nome', 'status', 'valor', 'mesa_id', 'tipo_pagamento', 'desconto'];
 
 
     public function excluirComanda()
@@ -29,10 +29,12 @@ class Comanda extends Model
     }
 
     //Pagar
-    public function pagar($metodo_pagamento)
+    public function pagar($metodo_pagamento, $desconto)
     {
+        $this->valor = $this->valor - $desconto;
         $this->tipo_pagamento = $metodo_pagamento;
         $this->status = $this->status + 1;
+        $this->desconto = $desconto;
         $this->save();
     }
 

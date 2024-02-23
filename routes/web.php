@@ -36,7 +36,7 @@ Route::get('/mesas/acessar/{id}', [MesaController::class, 'acessar']);
 //Comandas 
 Route::post('/comandas/adicionar', [ComandaController::class, 'criar']);
 Route::post('/comandas/apagar/{id}', [ComandaController::class, 'apagar']);
-Route::get('/comandas/pagamento/{comanda_id}/{metodo_pagamento}', [ComandaController::class, 'pagamento']);
+Route::get('/comandas/pagamento/{comanda_id}/{metodo_pagamento}/{desconto}', [ComandaController::class, 'pagamento'])->name('pagamento');
 Route::get('/comandas/acessar/{id}', [ComandaController::class, 'acessar']);
 
 //Produtos
