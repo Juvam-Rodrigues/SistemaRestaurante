@@ -130,6 +130,12 @@
                     <div class="divTextoMesasComandas">
                         <p class="textoMesasComandas"><strong>Comandas</strong></p>
                     </div>
+                    <div class="divGuardarComandas">
+                        <form action="/comandas/guarda/{{ $comanda->id }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary">Guardar comandas pagas</button>
+                        </form>
+                    </div>
                     <div class="divBotaoModal">
                         <button class="btn btn-success botaoModal" data-bs-toggle="modal"
                             data-bs-target="#modalAdicionarComanda">

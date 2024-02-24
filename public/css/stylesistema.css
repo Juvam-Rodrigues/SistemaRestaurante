@@ -120,7 +120,7 @@ header {
 .divInferior{
     display: flex;
     flex-wrap: wrap; /* Permite que os itens se movam para uma nova linha conforme necessário */
-    padding: 2%;
+    padding: 3%;
 }
 
 .card-body:first-child>div{
