@@ -38,7 +38,7 @@ Route::post('/comandas/adicionar', [ComandaController::class, 'criar']);
 Route::post('/comandas/apagar/{id}', [ComandaController::class, 'apagar']);
 Route::get('/comandas/pagamento/{comanda_id}/{metodo_pagamento}/{desconto}', [ComandaController::class, 'pagamento'])->name('pagamento');
 Route::get('/comandas/acessar/{id}', [ComandaController::class, 'acessar']);
-Route::get('/comandas/guardar/{id}', [ComandaController::class, 'guardar']);
+Route::get('/comandas/guardar', [ComandaController::class, 'guardar'])->name('guardar');
 
 //Produtos
 Route::post('/produtos/adicionar', [ProdutoController::class, 'criar']);

@@ -52,7 +52,7 @@ class ComandaController extends Controller
         $comanda_id = $request->route('comanda_id');
         $metodo_pagamento = $request->route('metodo_pagamento');
         $desconto = $request->route('desconto');
-        
+
         $comanda = Comanda::findOrFail($comanda_id);
 
         if (!$comanda->estaPaga() && $comanda->valor != 0) {
@@ -66,6 +66,29 @@ class ComandaController extends Controller
             session()->flash('msg', ['tipo' => 'erro', 'texto' => 'A comanda já foi paga!']);
             return redirect()->back();
         }
+
+    }
+    public function guardar()
+    {
+        $comandas = Comanda::all();
+        foreach($comandas as $comanda){
+            if($comanda->pode_guardar === 0 && $comanda->status === 1){
+                $resultado = $comanda->guardar();
+            }
+            else{
+                $resultado = false;
+            }
+        }
+        if ($resultado) {
+            session()->flash('msg', ['tipo' => 'sucesso', 'texto' => 'Todas comandas pagas foram guardadas!']);
+            return redirect()->back();
+        }
+        else{
+            session()->flash('msg', ['tipo' => 'erro', 'texto' => 'Todas comandas pagas foram guardadas anteriormente!']);
+            return redirect()->back();
+        }
+
+        
 
     }
 

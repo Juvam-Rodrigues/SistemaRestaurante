@@ -31,7 +31,7 @@
             </div>
         </div>
     </header>
-
+    @include('msg/flash-msg')
     <div id="container" class="row">
 
         <div class="divContainerMesa">
@@ -131,10 +131,8 @@
                         <p class="textoMesasComandas"><strong>Comandas</strong></p>
                     </div>
                     <div class="divGuardarComandas">
-                        <form action="/comandas/guarda/{{ $comanda->id }}" method="GET">
-                            @csrf
-                            <button type="submit" class="btn btn-secondary">Guardar comandas pagas</button>
-                        </form>
+                        <button type="submit" class="btn btn-secondary" form="formGuardarComandas">Guardar comandas
+                            pagas</button>
                     </div>
                     <div class="divBotaoModal">
                         <button class="btn btn-success botaoModal" data-bs-toggle="modal"
@@ -186,60 +184,69 @@
                     <div class="row col-12">
                         @if (isset($comandas))
                             @foreach ($comandas as $comanda)
-                                <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:2%">
-                                    <div class="card text-center">
-                                        <div class="card-body">
-                                            <p class="card-text">{{ $comanda->nome }}</p>
-                                            @if ($comanda->status === 0)
-                                                <span class="mb-3 btn btn-warning">Status: Não pago</span>
-                                            @elseif($comanda->status === 1)
-                                                @if ($comanda->tipo_pagamento === 'Dinheiro')
-                                                    <span class="mb-3 btn btn-success">Status: Pago no dinheiro.</span>
-                                                @elseif ($comanda->tipo_pagamento === 'Pix')
-                                                    <span class="mb-3 btn btn-success">Status: Pago no pix.</span>
-                                                @elseif ($comanda->tipo_pagamento === 'Cartao')
-                                                    <span class="mb-3 btn btn-success">Status: Pago no cartão.</span>
+                                @if ($comanda->pode_guardar === 0)
+                                    <form action="/comandas/guardar" method="GET" style="display:none;"
+                                        id="formGuardarComandas">
+                                        @csrf
+                                    </form>
+                                    <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:2%">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <p class="card-text">{{ $comanda->nome }}</p>
+                                                @if ($comanda->status === 0)
+                                                    <span class="mb-3 btn btn-warning">Status: Não pago</span>
+                                                @elseif($comanda->status === 1)
+                                                    @if ($comanda->tipo_pagamento === 'Dinheiro')
+                                                        <span class="mb-3 btn btn-success">Status: Pago no
+                                                            dinheiro.</span>
+                                                    @elseif ($comanda->tipo_pagamento === 'Pix')
+                                                        <span class="mb-3 btn btn-success">Status: Pago no pix.</span>
+                                                    @elseif ($comanda->tipo_pagamento === 'Cartao')
+                                                        <span class="mb-3 btn btn-success">Status: Pago no
+                                                            cartão.</span>
+                                                    @endif
                                                 @endif
-                                            @endif
-                                            <div class="divBotoesCard">
-                                                <a href="/comandas/acessar/{{ $comanda->id }}"
-                                                    class="btn btn-primary botaoAcessar">Acessar
-                                                    comanda</a>
-                                                <a href="#" class="btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#modalApagarComanda{{ $comanda->id }}">Apagar
-                                                    comanda</a>
+                                                <div class="divBotoesCard">
+                                                    <a href="/comandas/acessar/{{ $comanda->id }}"
+                                                        class="btn btn-primary botaoAcessar">Acessar
+                                                        comanda</a>
+                                                    <a href="#" class="btn btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#modalApagarComanda{{ $comanda->id }}">Apagar
+                                                        comanda</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Modal de apagar comanda -->
-                                <div class="modal fade" id="modalApagarComanda{{ $comanda->id }}" tabindex="-1"
-                                    aria-labelledby="modalApagarComandaLabel{{ $comanda->id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Apagar Comanda
-                                                </h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+                                    <!-- Modal de apagar comanda -->
+                                    <div class="modal fade" id="modalApagarComanda{{ $comanda->id }}"
+                                        tabindex="-1" aria-labelledby="modalApagarComandaLabel{{ $comanda->id }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Apagar Comanda
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <!-- Como esse modal é para ser ativado a partir de o id de cada mesa colocamos o id no target e no modal-->
+                                                <form action="/comandas/apagar/{{ $comanda->id }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    <div class="modal-body">
+                                                        <span>Você tem certeza que deseja apagar a comanda de:
+                                                            {{ $comanda->nome }}?</span>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger">Sim</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-bs-dismiss="modal" aria-label="Close">Não</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            <!-- Como esse modal é para ser ativado a partir de o id de cada mesa colocamos o id no target e no modal-->
-                                            <form action="/comandas/apagar/{{ $comanda->id }}" method="post">
-                                                {{ csrf_field() }}
-                                                <div class="modal-body">
-                                                    <span>Você tem certeza que deseja apagar a comanda de:
-                                                        {{ $comanda->nome }}?</span>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-danger">Sim</button>
-                                                    <button type="button" class="btn btn-primary"
-                                                        data-bs-dismiss="modal" aria-label="Close">Não</button>
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
                         @endif
                     </div>
