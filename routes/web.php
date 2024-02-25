@@ -3,6 +3,7 @@
 use App\Http\Controllers\ComandaController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\MesaController;
+use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\PedidoController;
@@ -48,8 +49,9 @@ Route::get('/produtos/listar/{comanda_id}/{categoria}', [ProdutoController::clas
 //Pedidos
 Route::get('/pedidos/adicionar/produto/{produto_id}/{comanda_id}/{produto_categoria}', [PedidoController::class, 'adicionar']);
 Route::get('/pedidos/remover/produto/{produto_id}/{comanda_id}/{produto_categoria}', [PedidoController::class, 'remover']);
-Route::get('/pedidos/acessar/', [PedidoController::class, 'acessar']);
 
+//Relatório vendas
+Route::get('/relatorio/vendas', [RelatorioController::class, 'acessar']);
 
 
 

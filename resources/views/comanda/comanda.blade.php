@@ -20,20 +20,25 @@
 </head>
 
 <body>
-    <header>
-        <div id="divLogo">
-            <img src="{{ asset('img/LOGO.png') }}" alt="Logo do Restaurante Dos Irmãos" width="90px" height="90px"
-                id="logo">
-            <p>Restaurante Dos Irmãos</p>
+    <div class="row d-flex justify-content-center divHeader">
+        <div class="col-9">
+            <header>
+                <div id="divLogo">
+                    <img src="{{ asset('img/LOGO.png') }}" alt="Logo do Restaurante Dos Irmãos" width="90px" height="90px"
+                        id="logo">
+                    <p>Restaurante Dos Irmãos</p>
+                </div>
+                <a href="#" class="conteudoHeader">Sobre a empresa</a>
+                <a href="#" class="conteudoHeader">Relatórios de vendas</a>
+                <div class="submenu-trigger btn conteudoHeader" id="submenu-trigger" onclick="submenuAbrir()">
+                    <span id="nomeUsuario"> {{ session()->get('usuario')->nome }} </span>
+                    <div class="submenu" id="submenu">
+                        <a href="/deslogar">Deslogar</a>
+                    </div>
+                </div>
         </div>
-        <a href="#" class="conteudoHeader">Sobre a empresa</a>
-        <div class="submenu-trigger btn conteudoHeader" id="submenu-trigger" onclick="submenuAbrir()">
-            <span id="nomeUsuario"> {{ session()->get('usuario')->nome }} </span>
-            <div class="submenu" id="submenu">
-                <a href="/deslogar">Deslogar</a>
-            </div>
-        </div>
-    </header>
+        </header>
+    </div>
     @include('msg/flash-msg')
 
     <div class="row">
