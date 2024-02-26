@@ -52,6 +52,8 @@ Route::get('/pedidos/remover/produto/{produto_id}/{comanda_id}/{produto_categori
 
 //Relatório vendas
 Route::get('/relatorio/vendas', [RelatorioController::class, 'acessar']);
+Route::get('/relatorio/vendas/{data}', [RelatorioController::class, 'mostrarComandasIndividuais']);
+
 
 
 

@@ -45,7 +45,7 @@
             <div class="row pt-2 pb-3">
                 <div class="col-1 d-flex justify-content-start align-items-center">
                     <img src="{{ asset('img/volte.png') }}" alt="seta de voltar" width="20px" height="20px">
-                    <a href="/sistema"
+                    <a href="/relatorio/vendas"
                         class="ms-3 link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Voltar</a>
                 </div>
                 <div class="col-11 d-flex justify-content-center">
@@ -57,21 +57,21 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Data</th>
-                        <th scope="col">Valor total</th>
-                        <th scope="col">Comandas individuais</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Valor</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($comandas_acumuladas as $comanda)
+                    @foreach ($comandas as $comanda)
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($comanda['data'])->format('d/m/Y') }}</td>
-                            <td>R$ {{ $comanda['valor_acumulado'] }}</td>
-                            <td><a href="/relatorio/vendas/{{ $comanda['data'] }}" class="btn btn-primary ">Acessar
-                                    comandas individuais</a></td>
+                            <td>{{ \Carbon\Carbon::parse($comanda->updated_at)->format('d/m/Y') }}</td>
+                            <td>{{ $comanda->nome }}</td>
+                            <td>R$ {{ $comanda->valor }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+
         </div>
     </div>
 

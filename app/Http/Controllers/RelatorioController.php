@@ -28,4 +28,11 @@ class RelatorioController extends Controller
 
         return view('relatorio/vendas', compact('comandas_acumuladas'));
     }
+    public function mostrarComandasIndividuais($data){
+        $comandas = DB::table('comandas')
+        ->where('pode_guardar', 1)
+        ->whereDate('updated_at', $data)
+        ->get();
+        return view('relatorio/vendasDoDia', compact('comandas'));
+    }
 }
