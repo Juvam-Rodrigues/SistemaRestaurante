@@ -21,7 +21,8 @@ class SessaoController extends Controller
             return redirect("/sistema");
 
         }else{
-            return redirect("/")->with('mensagem', 'Insira os dados corretamente ou crie uma conta.');;
+            session()->flash('msg', ['tipo' => 'erro', 'texto' => 'Coloque seus dados corretamente.']);
+            return redirect("/");
         }
 
     }
