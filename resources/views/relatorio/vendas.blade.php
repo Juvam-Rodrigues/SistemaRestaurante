@@ -26,7 +26,7 @@
                         id="logo">
                     <a href="/sistema">Restaurante Dos Irmãos</a>
                 </div>
-                <a href="#" class="conteudoHeader">Sobre a empresa</a>
+                <a href="/sobreNos" class="conteudoHeader">Sobre a empresa</a>
                 <a href="/relatorio/vendas" class="conteudoHeader">Relatórios de vendas</a>
                 <div class="submenu-trigger btn conteudoHeader" id="submenu-trigger" onclick="submenuAbrir()">
                     <span id="nomeUsuario"> {{ session()->get('usuario')->nome }} </span>
