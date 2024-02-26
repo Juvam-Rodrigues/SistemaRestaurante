@@ -22,9 +22,9 @@
         <div class="col-9">
             <header>
                 <div id="divLogo">
-                    <img src="{{ asset('img/LOGO.png') }}" alt="Logo do Restaurante Dos Irmãos" width="90px"
-                        height="90px" id="logo">
-                    <p>Restaurante Dos Irmãos</p>
+                    <img src="{{ asset('img/LOGO.png') }}" alt="Logo do Restaurante Dos Irmãos" width="90px" height="90px"
+                        id="logo">
+                    <a href="/sistema">Restaurante Dos Irmãos</a>
                 </div>
                 <a href="#" class="conteudoHeader">Sobre a empresa</a>
                 <a href="/relatorio/vendas" class="conteudoHeader">Relatórios de vendas</a>

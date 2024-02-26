@@ -8,4 +8,8 @@ class SistemaController extends Controller
 {
     public function exibir(){
         return view("sistema/index");
-    }}
+    }
+    public function exibirSobreNos(){
+        return view("sistema/sobreNos");
+    }
+}

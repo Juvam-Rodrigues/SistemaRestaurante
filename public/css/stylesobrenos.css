@@ -1,0 +1,37 @@
+#container{
+margin-top: 5%;
+margin-bottom: 8%;    
+}
+
+.divImagem {
+    background-image: url('../img/LOGO.png');
+    background-repeat: no-repeat;
+    padding: 12%;
+    background-size: cover;
+    border-right: 1px solid black;
+    background-position: center center;
+}
+
+.divTexto {
+    display: flex;
+    align-items: center;
+    margin-left: 4%;
+}
+
+.divTexto>div {
+    text-align: justify;
+}
+
+#boasVindas {
+    font-family: "fonteLogo", Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 2%;
+}
+#recebelos{
+    font-family: "fonteLogo", Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    font-size: 1.4rem;
+}

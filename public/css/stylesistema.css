@@ -39,12 +39,13 @@ header {
 }
 
 
-#divLogo>p {
-    margin-top: 4%;
+#divLogo>a {
     margin-left: 2%;
     margin-right: 1%;
     font-family: 'fonteLogo', Arial, Helvetica, sans-serif, monospace;
     font-size: 1.5vw;
+    text-decoration: none;
+    color: black;
 }
 #nomeUsuario{
     font-family: 'fonteLogo', Arial, Helvetica, sans-serif;

@@ -28,6 +28,8 @@ Route::post('/logar', [SessaoController::class, 'criar']);
 
 //Sistema
 Route::get('/sistema', [SistemaController::class, 'exibir']);
+Route::get('/sobreNos', [SistemaController::class, 'exibirSobreNos']);
+
 
 //Mesa
 Route::post('/mesas/adicionar', [MesaController::class, 'criar']);

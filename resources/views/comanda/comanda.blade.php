@@ -26,9 +26,9 @@
                 <div id="divLogo">
                     <img src="{{ asset('img/LOGO.png') }}" alt="Logo do Restaurante Dos Irmãos" width="90px" height="90px"
                         id="logo">
-                    <p>Restaurante Dos Irmãos</p>
+                    <a href="/sistema">Restaurante Dos Irmãos</a>
                 </div>
-                <a href="#" class="conteudoHeader">Sobre a empresa</a>
+                <a href="/sobreNos" class="conteudoHeader">Sobre a empresa</a>
                 <a href="/relatorio/vendas" class="conteudoHeader">Relatórios de vendas</a>
                 <div class="submenu-trigger btn conteudoHeader" id="submenu-trigger" onclick="submenuAbrir()">
                     <span id="nomeUsuario"> {{ session()->get('usuario')->nome }} </span>

@@ -11,7 +11,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/stylesistema.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/stylerelatorio.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/stylesobrenos.css') }}">
     <script src="{{ asset('js/script.js') }}" defer></script>
 
     <title>Sistema</title>
@@ -22,8 +22,8 @@
         <div class="col-9">
             <header>
                 <div id="divLogo">
-                    <img src="{{ asset('img/LOGO.png') }}" alt="Logo do Restaurante Dos Irmãos" width="90px" height="90px"
-                        id="logo">
+                    <img src="{{ asset('img/LOGO.png') }}" alt="Logo do Restaurante Dos Irmãos" width="90px"
+                        height="90px" id="logo">
                     <a href="/sistema">Restaurante Dos Irmãos</a>
                 </div>
                 <a href="#" class="conteudoHeader">Sobre a empresa</a>
@@ -39,42 +39,20 @@
     </div>
 
     @include('msg/flash-msg')
-
-    <div class="row d-flex justify-content-center">
-        <div class="col-11 container">
-            <div class="row pt-2 pb-3">
-                <div class="col-1 d-flex justify-content-start align-items-center">
-                    <img src="{{ asset('img/volte.png') }}" alt="seta de voltar" width="20px" height="20px">
-                    <a href="/relatorio/vendas"
-                        class="ms-3 link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Voltar</a>
-                </div>
-                <div class="col-11 d-flex justify-content-center">
-                    <span style="font-size: 1.5rem"><strong>Lista
-                            de comandas guardadas</strong></span>
-                </div>
+    <div id="container" class="row">
+        <div class="col-3 divImagem"></div>
+        <div class="col-8 divTexto">
+            <div><span id="boasVindas">Bem-vindo ao Restaurante Dos Irmãos!</span>
+                Descubra o sabor autêntico da culinária nordestina no Restaurante Dos Irmãos! Nossa equipe se dedica a
+                oferecer um atendimento de qualidade e pratos deliciosos, tudo isso à margem da BR 226, próximo ao
+                letreiro
+                da cidade. Venha celebrar os sabores tradicionais conosco. Para maior contato, entre em contato pelo
+                telefone:
+                <strong>84 98883-2414.</strong>
+                <span id="recebelos">Estamos ansiosos para recebê-los!</span>
             </div>
-            <table class="table table-hover table-bordered border-dark">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Data</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($comandas as $comanda)
-                        <tr>
-                            <td>{{ \Carbon\Carbon::parse($comanda->updated_at)->format('d/m/Y') }}</td>
-                            <td>{{ $comanda->nome }}</td>
-                            <td>R$ {{ $comanda->valor }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
         </div>
     </div>
-
     <div class="row divFooter">
         <footer class="col-12">
             <div class="creditos">
