@@ -42,36 +42,26 @@
 
     <div class="row d-flex justify-content-center">
         <div class="col-11 container">
-                <table class="table table-hover table-bordered border-dark caption-top">
-                    <caption>Lista de comandas guardadas</caption>
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <table class="table table-hover table-bordered border-dark">
+                <div class="d-flex justify-content-center pt-2 pb-2"><span>Lista de comandas guardadas</span></div>
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Valor total</th>
+                        <th scope="col">Comandas individuais</th>
+                        <!-- Adicione mais colunas conforme necessário -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($comandas_acumuladas as $comanda)
+                    <tr>
+                        <td>{{ $comanda['data'] }}</td>
+                        <td>R$ {{ $comanda['valor_acumulado'] }}</td>
+                        <td><a href="">Acessar comandas</a></td>
+                    </tr>
+                @endforeach
+                </tbody>                
+            </table>
 
         </div>
 

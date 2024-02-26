@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comanda extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome', 'status', 'valor', 'mesa_id', 'tipo_pagamento', 'desconto', 'pode_guardar'];
+    protected $fillable = ['nome', 'status', 'valor', 'mesa_id', 'tipo_pagamento', 'desconto', 'pode_guardar', 'update_at'];
 
 
     public function excluirComanda()
@@ -47,6 +47,7 @@ class Comanda extends Model
     public function guardar()
     {
         $this->pode_guardar = $this->pode_guardar + 1;
+        $this->pedidos()->delete();    // Remover comandas associadas, apagando
         $this->save();
         return true;
         
