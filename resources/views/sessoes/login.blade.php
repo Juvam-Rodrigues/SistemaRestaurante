@@ -35,21 +35,23 @@
 
     <div class="row">
         <div id="container" class="col-10">
-            <div id="divImagem-login">
-                <img src="img/LoginNordestino.png" alt="login-de-usuario.png" width="200px" height="200x">
-            </div>
-            <div id="divForm">
-                <form action="/logar" method="POST" id="formlogin">
-                    {{ csrf_field() }}
-
-                    <h1>Login</h1>
-                    <input type="email" name="email" id="email" placeholder="Digite seu email" required>
-                    <div style="position: relative">
-                        <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
-                        <img src="img/olho.png" alt="" id="olho">
-                    </div>
-                    <button type="submit" id="enviar" class="btn">Entrar</button>
-                </form>
+            <div class="row col-12">
+                <div id="divImagemLogin" class="col-5">
+                    <img src="img/LoginNordestino.png" alt="login-de-usuario.png" width="200px" height="200x">
+                </div>
+                <div id="divForm" class="col-7">
+                    <form action="/logar" method="POST" id="formlogin">
+                        {{ csrf_field() }}
+    
+                        <h1>Login</h1>
+                        <input type="email" name="email" id="email" placeholder="Digite seu email" required>
+                        <div style="position: relative">
+                            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+                            <img src="img/olho.png" alt="" id="olho">
+                        </div>
+                        <button type="submit" id="enviar" class="btn">Entrar</button>
+                    </form>
+                </div>
             </div>
         </div>
 
